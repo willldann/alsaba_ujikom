@@ -14,10 +14,10 @@
             <ul>
                 <li><a href="dashboard" class="active">Home</a></li>
                 <li><a href="product">Shop</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="about">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
                 <li><a href="cart.html">🛒 Cart</a></li>
-                <li><a href="login.html" onclick="openModal('loginModal')">Login</a></li>
+                <li><a href="login" onclick="openModal('loginModal')">Login</a></li>
             </ul>
         </nav>
     </header>
@@ -28,7 +28,7 @@
             <h1>Promo Spesial Dendeng Ayam</h1>
             <h2>Diskon Hingga <span>50%</span>!</h2>
             <p>Jangan lewatkan kesempatan ini, hanya di bulan ini!</p>
-            <a href="#" class="btn">Beli Sekarang</a>
+            <a href="product" class="btn">Beli Sekarang</a>
         </div>
     </section>
     
