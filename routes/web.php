@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return view('dashboard');
+    return view('users.dashboard');
 })->middleware('auth')->name('dashboard');
 
 Route::get('/product', [ProductController::class, 'index'])->middleware('auth')->name('product');

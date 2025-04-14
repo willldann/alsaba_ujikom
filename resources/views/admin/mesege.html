@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Chat</title>
+    <link rel="stylesheet" href="../admin//css/mesege.css">
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <script src="../admin/js/mesege.js"></script>
+</head>
+<body>
+
+
+    <div class="chat-container">
+        <!-- Sidebar User List -->
+        <div class="user-list">
+            <h3>Users</h3>
+            <ul id="userList">
+                <li onclick="openChat('John Doe')">John Doe</li>
+                <li onclick="openChat('Jane Smith')">Jane Smith</li>
+                <li onclick="openChat('Michael Brown')">Michael Brown</li>
+            </ul>
+        </div>
+
+        <!-- Chat Box -->
+        <div class="chat-box">
+            <div class="chat-header">
+                <h3 id="chatUser">Select a User</h3>
+            </div>
+            <div class="chat-messages" id="chatMessages">
+                <p class="info-text">Select a user to start chatting</p>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="messageInput" placeholder="Type a message..." disabled>
+                <button onclick="sendMessage()"><i class='bx bx-send'></i></button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/chat.js"></script>
+
+</body>
+</html>

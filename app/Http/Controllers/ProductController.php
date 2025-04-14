@@ -8,6 +8,6 @@ class ProductController extends Controller
 {
     public function index()
     {
-        return view('product'); // Pastikan ada file resources/views/product.blade.php
+        return view('users.product'); // Pastikan ada file resources/views/product.blade.php
     }
 }
