@@ -11,14 +11,13 @@ class RegisterController extends Controller
 {
     public function showRegistrationForm()
     {
-        return view('register'); // Menampilkan form registrasi
+        return view('users.register'); // Menampilkan form registrasi
     }
 
     public function register(Request $request)
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'phone' => 'required|string|max:15',
             'gender' => 'required|string',
@@ -27,7 +26,6 @@ class RegisterController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'username' => $request->username,
             'email' => $request->email,
             'phone' => $request->phone,
             'gender' => $request->gender,
@@ -37,6 +35,6 @@ class RegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard')->with('success', 'Registrasi berhasil!');
+        return redirect()->route('home')->with('success', 'Registrasi berhasil!');
     }
 }

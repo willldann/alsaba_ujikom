@@ -5,42 +5,6 @@
   box-sizing: border-box;
 }
 
-/* Navbar */
-.navbar-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: #333;
-  padding: 20px 40px; /* Tambah padding untuk lebih berjarak */
-}
-
-.logo {
-  font-size: 26px;
-  font-weight: bold;
-  color: white;
-}
-
-.logo span {
-  color: #fdbb2d;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 20px; /* Tambahkan jarak antar menu */
-}
-
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s;
-}
-
-nav ul li a:hover {
-  color: #fdbb2d;
-}
-
 /* Produk Section */
 .container {
   max-width: 1100px;

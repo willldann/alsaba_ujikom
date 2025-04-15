@@ -30,10 +30,6 @@
             <input type="text" name="name" value="{{ old('name') }}" placeholder="Masukkan Nama Anda" required>
           </div>
           <div class="input-box">
-            <span class="details">Username</span>
-            <input type="text" name="username" value="{{ old('username') }}" placeholder="Masukkan Username Anda" required>
-          </div>
-          <div class="input-box">
             <span class="details">Email</span>
             <input type="email" name="email" value="{{ old('email') }}" placeholder="Masukkan Email Anda" required>
           </div>

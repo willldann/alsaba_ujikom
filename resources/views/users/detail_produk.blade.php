@@ -4,53 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detail Produk - Dendeng Shop</title>
-    <link rel="stylesheet" href="../css/detail_produk.css">
+    <link rel="stylesheet" href="/css/detail_produk.css">
 </head>
 <body>
-    <header>
-        <div class="logo">Dendeng<span>Shop</span></div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="product.html" class="active">Shop</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="cart.html">🛒 Cart</a></li>
-            </ul>
-        </nav>
-    </header>
+    
+    @include('layouts.navbar')
     
     <section class="product-detail">
         <div class="product-gallery">
-            <img id="main-image" src="../assets/dendeng manis.jpg" alt="Dendeng Manis">
+            <img id="main-image" src="/assets/{{ $product->image }}" alt="{{ $product->name }}">
             <div class="thumbnail-container">
-                <img src="../assets/dendeng pedas.jpg" alt="Dendeng Manis" class="thumbnail" onclick="changeImage(this)">
-                <img src="../assets/dendeng pedas.jpg" alt="Dendeng Pedas" class="thumbnail" onclick="changeImage(this)">
-                <img src="../assets/dendeng manis.jpg" alt="Dendeng Sapi" class="thumbnail" onclick="changeImage(this)">
+                @foreach ($product->thumbnails as $thumb)
+                    <img src="/assets/{{ $thumb }}" alt="{{ $product->name }}" class="thumbnail" onclick="changeImage(this)">
+                @endforeach
             </div>
         </div>
         <div class="product-info">
-            <h1>Dendeng Manis</h1>
-            <p class="price">Rp 50.000</p>
-            <select>
-                <option>Pilih Ukuran</option>
-                <option>100 gram</option>
-                <option>250 gram</option>
-                <option>500 gram</option>
+            <h1>{{ $product->name }}</h1>
+            <p class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+    
+            <select name="size">
+                <option disabled selected>Pilih Ukuran</option>
+                @foreach ($product->sizes as $size)
+                    <option value="{{ $size }}">{{ $size }}</option>
+                @endforeach
             </select>
-            <input type="number" value="1" min="1">
-            <button id="addToCartButton" class="buy-btn">Add to Cart</button>
+    
+            <input type="number" name="quantity" value="1" min="1">
+            <a href="{{ route('users.cart') }}" class="buy-btn">Beli Sekarang</a>
+    
             <h2>Product Details</h2>
-            <p>Dendeng ayam manis dengan bumbu rempah khas nusantara, dibuat dari bahan pilihan dan berkualitas tinggi.</p>
+            <p>{{ $product->description }}</p>
         </div>
     </section>
+    
     <script>
         function changeImage(element) {
             document.getElementById('main-image').src = element.src;
         }
         // Event Listener untuk tombol Add to Cart
         document.getElementById('addToCartButton').addEventListener('click', function() {
-            window.location.href = "cart.html"; // Pastikan file cart.html ada di proyek
+            window.location.href = "users.cart"; // Pastikan file cart.html ada di proyek
         });
     </script>
     

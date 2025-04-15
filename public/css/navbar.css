@@ -1,3 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* ========== Global Reset ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+}
+
 /* ========== Header/Navbar Styles ========== */
 header {
     display: flex;
@@ -20,6 +33,10 @@ header {
     color: #f8b400;
 }
 
+nav {
+    position: relative;
+}
+
 nav ul {
     list-style: none;
     display: flex;
@@ -31,7 +48,7 @@ nav ul li a {
     text-decoration: none;
     font-size: 18px;
     position: relative;
-    transition: color 0.3s ease;
+    transition: 0.3s ease;
 }
 
 nav ul li a:hover,
@@ -39,7 +56,7 @@ nav ul li a.active {
     color: #f8b400;
 }
 
-/* Underline animation on hover */
+/* Hover underline */
 nav ul li a::after {
     content: "";
     position: absolute;
@@ -56,11 +73,22 @@ nav ul li a.active::after {
     width: 100%;
 }
 
+/* ========== Hamburger Menu ========== */
+#menu-toggle {
+    display: none;
+}
+
+.hamburger {
+    display: none;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+}
+
 /* ========== Responsive Styles ========== */
 @media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        align-items: flex-start;
+    .hamburger {
+        display: block;
     }
 
     nav {
@@ -69,17 +97,20 @@ nav ul li a.active::after {
 
     nav ul {
         flex-direction: column;
+        background-color: #333;
         width: 100%;
-        padding: 10px 0;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        display: none;
     }
 
     nav ul li {
-        width: 100%;
-        text-align: left;
-        padding: 10px 40px;
+        padding: 15px 30px;
+        border-bottom: 1px solid #444;
     }
 
-    nav ul li a {
-        font-size: 16px;
+    #menu-toggle:checked + .hamburger + nav ul {
+        display: flex;
     }
 }
