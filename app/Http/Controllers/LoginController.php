@@ -22,7 +22,14 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt($request->only('email', 'password'))) {
-            return redirect()->intended('/dashboard'); // Redirect setelah login sukses
+            $user = Auth::user();
+
+            if ($user->role === 'admin') {
+                return redirect('/admin/dashboard');
+            }
+            if ($user->role === 'user') {
+                return redirect('/dashboard');
+            }
         }
 
         return back()->withErrors(['email' => 'Email atau password salah.']);
@@ -34,4 +41,3 @@ class LoginController extends Controller
         return redirect('/login');
     }
 }
-

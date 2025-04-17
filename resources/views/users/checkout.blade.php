@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Dendeng</title>
-    <link rel="stylesheet" href="../css/checkout.css">
-    <script defer src="../js/checkout.js"></script>
+    <link rel="stylesheet" href="/css/checkout.css">
+    <script defer src="/js/checkout.js"></script>
 </head>
 <body>
     <div class="checkout-container">
@@ -14,7 +14,7 @@
             <h2><i class="fa-solid fa-shopping-cart"></i> Ringkasan Pesanan</h2>
             <div class="cart-summary">
                 <div class="cart-item">
-                    <img src="../assets/dendeng-pedas.jpg" alt="Dendeng Pedas">
+                    <img src="/assets/dendeng-pedas.jpg" alt="Dendeng Pedas">
                     <div class="cart-details">
                         <strong>Dendeng Pedas</strong>
                         <p>250g</p>
@@ -23,7 +23,7 @@
                 </div>
 
                 <div class="cart-item">
-                    <img src="../assets/dendeng-manis.jpg" alt="Dendeng Manis">
+                    <img src="/assets/dendeng-manis.jpg" alt="Dendeng Manis">
                     <div class="cart-details">
                         <strong>Dendeng Manis</strong>
                         <p>250g</p>

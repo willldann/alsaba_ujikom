@@ -18,7 +18,7 @@
             <h1>Promo Spesial Dendeng Ayam</h1>
             <h2>Diskon Hingga <span>50%</span>!</h2>
             <p>Jangan lewatkan kesempatan ini, hanya di bulan ini!</p>
-            <a href="{{ route('product') }}" class="btn">Beli Sekarang</a>
+            <a href="{{ route('users.product') }}" class="btn">Beli Sekarang</a>
         </div>
     </section>
     

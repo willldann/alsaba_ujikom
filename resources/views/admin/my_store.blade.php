@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Store - Admin</title>
-    <link rel="stylesheet" href="../admin/css/my_store.css">
+    <link rel="stylesheet" href="/admin/css/my_store.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <script src="../admin/js/my_store.js"></script>
+    <script src="/admin/js/my_store.js"></script>
 </head>
 <body>
     <section id="content">
