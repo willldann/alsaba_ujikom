@@ -142,7 +142,7 @@ main {
 
 /* Dollar Icon Color */
 .box-info i.fa-dollar-sign {
-    color: #FFD700; /* Yellow */
+    color: green; /* Yellow */
 }
 
 /* Back Button */

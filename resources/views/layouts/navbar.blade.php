@@ -14,9 +14,7 @@
             <li><a href="{{ url('contact') }}" class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a></li>
             <li><a href="{{ url('cart') }}">🛒 Cart</a></li>
 
-            {{-- Menu Admin --}}
-            <li><a href="{{ url('admin') }}" class="{{ Request::is('admin') ? 'active' : '' }}">Admin</a></li>
-
+          
             @auth
                 <li>Halo, {{ Auth::user()->name }}!</li>
                 <form method="POST" action="{{ route('logout') }}" id="logout-form">
