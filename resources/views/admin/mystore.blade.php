@@ -89,6 +89,14 @@
                     </table>
                 </div>
             </div>
+            <!-- Kembali ke Dashboard Button -->
+            <div class="back-to-dashboard">
+                <a href="javascript:history.back()" class="back-btn">
+                    <i class="fas fa-arrow-left"></i> Back
+                </a>
+                
+                </a>
+            </div>
         </main>
     </section>
     <script src="/admin/js/my_store.js"></script>
