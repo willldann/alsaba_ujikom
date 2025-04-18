@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 
 class AdminController extends Controller
 {
-    //
+    public function mystore()
+    {
+        return view('admin.mystore');
+    }
 }
-    

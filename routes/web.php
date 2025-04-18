@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\AdminController;
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
@@ -6,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Auth;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +17,7 @@ use Illuminate\Support\Facades\Auth;
 Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
 Route::post('/login', [LoginController::class, 'login']);
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+Route::get('/admin/mystore', [AdminController::class, 'mystore'])->middleware('auth');
 
 Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
 Route::post('/register', [RegisterController::class, 'register']);
@@ -47,6 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::view('/checkout', 'users.checkout')->name('users.checkout');
 
+
     // Add other pages that should only be accessed when logged in:
     // Route::view('/profile', 'users.profile')->name('users.profile');
     // Route::view('/orders', 'users.orders')->name('users.orders');
@@ -59,4 +63,3 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-Route::view('/admin/dashboard', 'admin.index')->name('admin.index');

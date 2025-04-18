@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Store - Admin</title>
-    <link rel="stylesheet" href="/admin/css/my_store.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/admin/css/my_store.css">
     <script src="/admin/js/my_store.js"></script>
 </head>
 <body>
@@ -24,7 +24,7 @@
                 <span class="num">5</span>
             </a>
             <a href="#" class="profile">
-                <img src="img/people.png">
+                <img src="img/people.png" alt="Profile">
             </a>
         </nav>
         <main>
@@ -68,7 +68,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td><img src="img/product1.png"> Product A</td>
+                                <td><img src="img/product1.png" alt="Product A"> Product A</td>
                                 <td>$120</td>
                                 <td><span class="status available">Available</span></td>
                                 <td>
@@ -77,7 +77,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td><img src="img/product2.png"> Product B</td>
+                                <td><img src="img/product2.png" alt="Product B"> Product B</td>
                                 <td>$90</td>
                                 <td><span class="status out-stock">Out of Stock</span></td>
                                 <td>
@@ -91,6 +91,6 @@
             </div>
         </main>
     </section>
-    <script src="script.js"></script>
+    <script src="/admin/js/my_store.js"></script>
 </body>
 </html>
