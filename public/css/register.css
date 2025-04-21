@@ -1,101 +1,153 @@
-/* Mengatur tampilan umum halaman */
+/* Reset & font */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Poppins', sans-serif;
-  }
-  
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: linear-gradient(to right, #ff9966, #ff5e62);
-  }
-  
-  .container {
-    width: 400px;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .title {
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    margin-bottom: 15px;
-    color: #333;
-  }
-  
-  .input-box {
-    margin-bottom: 15px;
-  }
-  
-  .input-box .details {
-    display: block;
-    font-weight: bold;
-    margin-bottom: 5px;
-  }
-  
-  .input-box input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  .gender-details {
-    margin-top: 10px;
-  }
-  
-  .gender-title {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
-  }
-  
-  .category {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  .category label {
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-  }
-  
-  .dot {
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    background: #ddd;
-    margin-right: 5px;
-  }
-  
-  input[type="radio"]:checked + .dot {
-    background: #6a5acd;
-  }
-  
-  .button {
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  .button input {
-    background: #6a5acd;
-    color: white;
-    padding: 10px;
-    width: 100%;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  
-  .button input:hover {
-    background: #5a49c4;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background gradient oranye */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+}
+
+/* Card putih tengah */
+.container {
+  width: 100%;
+  max-width: 430px;
+  background: #fff;
+  padding: 35px 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Judul */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Input box styling */
+.input-box {
+  margin-bottom: 18px;
+}
+
+.input-box .details {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+/* Gender section */
+.gender-details {
+  margin: 18px 0;
+}
+
+.gender-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  display: block;
+  color: #333;
+}
+
+.category {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.category label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+.dot {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #ccc;
+  margin-right: 6px;
+  transition: 0.3s;
+}
+
+input[type="radio"]:checked + .dot {
+  background: #e6683c;
+}
+
+/* Tombol Register */
+.button {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.button input {
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  color: white;
+  padding: 12px;
+  width: 100%;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button input:hover {
+  background: #e64a4f;
+}
+
+/* Container untuk tombol login */
+.login-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Tombol login styled seperti tombol register */
+.login-button {
+  display: inline-block;
+  background: linear-gradient(to right, #ff9966, #ff5e62);
+  color: #fff;
+  padding: 10px 0;
+  width: 100%;
+  text-align: center;
+  border-radius: 8px;
+  text-decoration: none;
+  transition: background 0.3s ease;
+}
+
+.login-button:hover {
+  background: #e64a4f;
+}
+
+/* Alert box (Laravel error) */
+.alert-danger {
+  background-color: #ffe3e3;
+  border: 1px solid #f5c2c2;
+  padding: 10px 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  color: #b10000;
+}
+
+.alert-danger ul {
+  margin: 0;
+  padding-left: 18px;
+}

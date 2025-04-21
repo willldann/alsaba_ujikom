@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration</title>
   <link rel="stylesheet" href="/css/register.css">
 </head>
+
 <body>
   <div class="container">
     <div class="title">Registration</div>
 
     <!-- Menampilkan pesan error -->
     @if ($errors->any())
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
+    <div class="alert alert-danger">
+      <ul>
+        @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
     @endif
 
     <div class="content">
@@ -71,8 +73,16 @@
         <div class="button">
           <input type="submit" value="Register">
         </div>
+
+        <!-- Tombol Kembali ke Login -->
+        <!-- Tombol Login -->
+        <div class="login-container">
+          <a href="{{ route('login') }}" class="login-button">Login</a>
+        </div>
+
       </form>
     </div>
   </div>
 </body>
+
 </html>

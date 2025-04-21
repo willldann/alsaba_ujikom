@@ -13,11 +13,11 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('category');
-            $table->decimal('price', 10, 2);
-            $table->string('image')->nullable();
-            $table->timestamps();
+            $table->string('name'); // Nama produk
+            $table->string('category')->nullable(); // Kategori produk
+            $table->decimal('price', 12, 0); // Harga produk (tanpa desimal, cocok untuk Rupiah)
+            $table->string('image')->nullable(); // Gambar produk
+            $table->timestamps(); // Waktu pembuatan dan pembaruan
         });
     }
 

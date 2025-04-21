@@ -1,0 +1,132 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+    transition: all 0.2s ease-in-out;
+  }
+  
+  body {
+    margin: 0;
+    padding: 2rem;
+    background: #f1f4f9;
+    color: #343a40;
+  }
+  
+  .container {
+    max-width: 720px;
+    margin: auto;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
+    padding: 2.5rem 2rem;
+    position: relative;
+  }
+  
+  .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .card-header h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .back-link {
+    font-size: 0.95rem;
+    text-decoration: none;
+    color: #6c757d;
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #f1f3f5;
+  }
+  
+  .back-link:hover {
+    background: #e1e5e9;
+    color: #4a90e2;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.6rem;
+    color: #495057;
+  }
+  
+  .form-group input,
+  .form-group select {
+    width: 100%;
+    padding: 0.85rem 1rem;
+    border: 1px solid #dee2e6;
+    border-radius: 12px;
+    background: #f9fbfd;
+    font-size: 1rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    outline: none;
+    border-color: #4a90e2;
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(74, 144, 226, 0.1);
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .btn {
+    padding: 0.85rem 1.6rem;
+    border: none;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1rem;
+  }
+  
+  .btn.primary {
+    background-color: #4a90e2;
+    color: white;
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  }
+  
+  .btn.primary:hover {
+    background-color: #357bd8;
+    transform: translateY(-2px);
+  }
+  
+  .btn.secondary {
+    background-color: #f1f3f5;
+    color: #495057;
+    border: 1px solid #ced4da;
+  }
+  
+  .btn.secondary:hover {
+    background-color: #e9ecef;
+    transform: translateY(-1px);
+  }
+  
+  /* Optional: Smooth focus effect on file input */
+  input[type="file"] {
+    padding: 0.65rem;
+    font-size: 0.95rem;
+  }

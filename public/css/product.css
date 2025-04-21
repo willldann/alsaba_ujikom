@@ -62,28 +62,28 @@
   margin: 10px 0;
 }
 
-.product-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
+.product-buttons a {
+  display: inline-block;
+  background: #e67e22; /* Warna latar belakang tombol */
+  border: 1px solid #e67e22; /* Border tombol */
+  padding: 12px 20px; /* Menambahkan padding untuk tombol */
+  cursor: pointer;
+  font-size: 16px; /* Ukuran font yang lebih besar agar lebih jelas */
+  border-radius: 5px;
+  transition: background 0.3s, transform 0.3s; /* Transisi halus */
+  color: #fff; /* Warna teks tombol */
+  width: 48%; /* Membuat tombol hampir setengah lebar container */
+  text-align: center; /* Agar teks tombol rata tengah */
+  text-decoration: none; /* Menghapus underline pada tautan */
 }
 
-.product-buttons button {
-  background: #fdbb2d;
-  border: none;
-  padding: 10px 14px;
-  cursor: pointer;
-  font-size: 14px;
-  border-radius: 5px;
-  transition: background 0.3s;
+.product-buttons a:hover {
+  background: #d35400; /* Warna latar belakang saat hover */
+  transform: translateY(-2px); /* Efek sedikit terangkat saat hover */
 }
 
 .product-buttons button:hover {
   background: #e09e24;
-}
-
-.product-buttons i {
-  margin-right: 5px;
 }
 
 /* Responsiveness */

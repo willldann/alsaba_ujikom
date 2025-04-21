@@ -12,12 +12,13 @@ use Illuminate\Support\Facades\Auth;
 | Auth Routes
 |--------------------------------------------------------------------------
 */
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
+
+Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login')->middleware('guest');
+Route::post('/login', [LoginController::class, 'login'])->middleware('guest');
 Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
+Route::get('/register', [RegisterController::class, 'showRegistrationForm'])->name('register')->middleware('guest');
+Route::post('/register', [RegisterController::class, 'register'])->middleware('guest');
 
 
 /*
@@ -32,7 +33,6 @@ Route::view('/contact', 'users.contact')->name('contact');
 Route::get('/product', [ProductController::class, 'index'])->name('users.product');
 Route::get('/produk/{id}', [ProductController::class, 'show'])->name('users.detail_produk');
 
-
 /*
 |--------------------------------------------------------------------------
 | Protected Routes (Hanya bisa diakses setelah login)
@@ -40,10 +40,10 @@ Route::get('/produk/{id}', [ProductController::class, 'show'])->name('users.deta
 */
 Route::middleware(['auth'])->group(function () {
     Route::view('/dashboard', 'users.dashboard')->name('dashboard');
-    
+
     // Cart & Checkout
     Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
-    Route::get('/cart/add/{id}', [CartController::class, 'addT oCart'])->name('cart.add');
+    Route::get('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::view('/checkout', 'users.checkout')->name('users.checkout');
 
@@ -52,11 +52,35 @@ Route::middleware(['auth'])->group(function () {
     // Route::view('/orders', 'users.orders')->name('users.orders');
 
     // routes/web.php
+    Route::prefix('admin')->group(function () {
+        Route::get('/my-store', function () {
+            return view('admin.my_store');
+        })->name('admin.my_store');
 
-    
+        Route::get('/dashboard', function () {
+            return view('admin.index');
+        })->name('admin.index');
+    });
 
+    // routes/web.php
+
+
+    Route::get('/add_produk', function () {
+        return view('admin.add_produk'); // pastikan file produk/add.blade.php ada
+    })->name('add_produk');
+
+    Route::get('/my-store', function () {
+        return view('admin.my_store'); // pastikan ada view my_store.blade.php
+    })->name('my_store');
+
+    // routes/web.php
+
+    // Custom route untuk halaman toko admin (view khusus)
+    Route::get('/admin/my-store', [ProductController::class, 'myStore'])->name('admin.my_store');
+
+    // Resource route otomatis lengkap
+    Route::resource('products', ProductController::class);
+
+    Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
+    Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
 });
-
-
-
-Route::view('/admin/dashboard', 'admin.index')->name('admin.index');

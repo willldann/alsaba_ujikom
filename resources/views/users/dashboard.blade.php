@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dendeng Ayam Premium</title>
     <link rel="stylesheet" href="/css/dashboard.css">
     <!-- Font Awesome -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
+
 <body>
-    
+
     @include('layouts.navbar')
-    
+
     <section class="hero">
         <div class="hero-text">
             <h4>Selamat Datang di Dendeng Shop</h4>
@@ -21,8 +23,8 @@
             <a href="{{ route('users.product') }}" class="btn">Beli Sekarang</a>
         </div>
     </section>
-    
-    
+
+
     <section class="keunggulan">
         <div class="features">
             <div class="feature-item">
@@ -43,33 +45,33 @@
             </div>
         </div>
     </section>
-    
+
     <section class="our-products">
         <h2>Our Products</h2>
         <div class="product-container">
             <div class="product">
-                <img src="/assets/dendeng_manis.jpg" alt="Dendeng Sapi">
+                <img src="/assets/dendeng-manis.jpg" alt="Dendeng Sapi">
                 <h3>Dendeng Sapi</h3>
                 <p>Rp 50.000</p>
                 <button class="buy-btn">Beli Sekarang</button>
             </div>
             <div class="product">
-                <img src="/assets/dendeng_pedas.jpg" alt="Dendeng Ayam">
+                <img src="/assets/dendeng-pedas.jpg" alt="Dendeng Ayam">
                 <h3>Dendeng Ayam</h3>
                 <p>Rp 45.000</p>
                 <button class="buy-btn">Beli Sekarang</button>
             </div>
             <div class="product">
-                <img src="/assets/dendeng_manis.jpg" alt="Dendeng Pedas">
+                <img src="/assets/dendeng-manis.jpg" alt="Dendeng Pedas">
                 <h3>Dendeng Pedas</h3>
                 <p>Rp 55.000</p>
                 <button class="buy-btn">Beli Sekarang</button>
             </div>
         </div>
     </section>
-    
+
     @include('layouts.footer')
-    
+
     <script>
         function goToDetailPage(event) {
             let button = event.target;
@@ -84,7 +86,7 @@
             }));
             window.location.href = 'detail_produk.html';
         }
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             let buyButtons = document.querySelectorAll('.buy-btn');
             buyButtons.forEach(button => {
                 button.addEventListener('click', goToDetailPage);
@@ -92,4 +94,5 @@
         });
     </script>
 </body>
+
 </html>

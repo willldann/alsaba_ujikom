@@ -65,12 +65,9 @@ window.addEventListener('resize', function () {
 
 
 
-const switchMode = document.getElementById('switch-mode');
-
-switchMode.addEventListener('change', function () {
-	if(this.checked) {
-		document.body.classList.add('dark');
-	} else {
-		document.body.classList.remove('dark');
-	}
-})
+document.addEventListener("DOMContentLoaded", function () {
+	const toggle = document.getElementById('switch-mode');
+	toggle.addEventListener('change', () => {
+		document.body.classList.toggle('dark-mode');
+	});
+});

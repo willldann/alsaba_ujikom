@@ -17,10 +17,9 @@
 
       @foreach ($products as $product)
       <div class="product-item">
-        <img src="/assets/{{ $product->image }}" alt="{{ $product->name }}">
+        <img src="/storage/{{ $product->image }}" alt="{{ $product->name }}">
         <h3>{{ $product->name }}</h3>
         <p class="category">Kategori: {{ $product->category }}</p>
-        <div class="stars">⭐⭐⭐⭐⭐</div>
         <p class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
         <div class="product-buttons">
           <!-- Tombol ke halaman detail -->
@@ -28,7 +27,7 @@
 
           <!-- Tombol langsung beli -->
           <a href="{{ route('cart.add', $product->id) }}" class="buy-btn">Beli Sekarang</a>
-        </div>
+      </div>
       </div>
       @endforeach
 

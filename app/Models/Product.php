@@ -9,7 +9,9 @@ class Product extends Model
 {
     use HasFactory;
 
+    // Tentukan kolom-kolom yang bisa diisi
     protected $fillable = [
-        'name', 'description', 'price', 'stock', 'image'
+        'name', 'category', 'price', 'stock', 'status', 'image'
     ];
 }
+
