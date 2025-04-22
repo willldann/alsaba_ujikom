@@ -1,38 +1,37 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout - Dendeng</title>
     <link rel="stylesheet" href="/css/checkout.css">
     <script defer src="/js/checkout.js"></script>
+
+    <!-- Pastikan FontAwesome telah dimuat jika menggunakan ikon -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
     <div class="checkout-container">
         <!-- Bagian Kiri (Ringkasan Pesanan) -->
         <div class="checkout-left">
             <h2><i class="fa-solid fa-shopping-cart"></i> Ringkasan Pesanan</h2>
             <div class="cart-summary">
+                @foreach ($cartItems as $item)
                 <div class="cart-item">
-                    <img src="/assets/dendeng-pedas.jpg" alt="Dendeng Pedas">
+                    <!-- Cek apakah $item adalah array atau objek, dan pastikan 'image' ada -->
+                    <img src="{{ is_array($item) && isset($item['image']) ? $item['image'] : (isset($item->image) ? $item->image : '/default-image.jpg') }}" alt="{{ is_array($item) ? $item['name'] : $item->name }}">
                     <div class="cart-details">
-                        <strong>Dendeng Pedas</strong>
-                        <p>250g</p>
-                        <p class="price">Rp65.000</p>
+                        <strong>{{ is_array($item) ? $item['name'] : $item->name }}</strong>
+                        <p>{{ is_array($item) ? $item['quantity'] : $item->quantity }} x {{ is_array($item) ? $item['weight'] : $item->weight }}</p>
+                        <p class="price">Rp{{ number_format(is_array($item) ? $item['price'] : $item->price, 0, ',', '.') }}</p>
                     </div>
                 </div>
+                @endforeach
 
-                <div class="cart-item">
-                    <img src="/assets/dendeng-manis.jpg" alt="Dendeng Manis">
-                    <div class="cart-details">
-                        <strong>Dendeng Manis</strong>
-                        <p>250g</p>
-                        <p class="price">Rp75.000</p>
-                    </div>
-                </div>
-                
                 <div class="cart-total">
-                    <p><strong>Total: <span id="checkout-total">Rp140.000</span></strong></p>
+                    <p><strong>Total: <span id="checkout-total">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
                 </div>
             </div>
         </div>
@@ -41,30 +40,51 @@
         <div class="checkout-right">
             <h2><i class="fa-solid fa-truck"></i> Pengiriman & Pembayaran</h2>
 
-            <form id="shipping-form">
-                <input type="text" id="name" placeholder="Nama Lengkap" required>
-                <input type="text" id="address" placeholder="Alamat Lengkap" required>
-                <input type="text" id="city" placeholder="Kota" required>
-                <input type="text" id="postal-code" placeholder="Kode Pos" required>
-                <input type="text" id="phone" placeholder="Nomor HP" required>
+            <form id="shipping-form" method="POST" action="{{ route('checkout.placeOrder') }}">
+                @csrf
+                <!-- Isi otomatis dengan data user -->
+                <div class="form-group">
+                    <input type="text" name="name" id="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name ?? '') }}" required>
+                    @error('name') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <input type="text" name="address" id="address" placeholder="Alamat Lengkap" value="{{ old('address', $user->address ?? '') }}" required>
+                    @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <input type="text" name="city" id="city" placeholder="Kota" value="{{ old('city', $user->city ?? '') }}" required>
+                    @error('city') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <input type="text" name="postal_code" id="postal-code" placeholder="Kode Pos" value="{{ old('postal_code', $user->postal_code ?? '') }}" required>
+                    @error('postal_code') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+                <div class="form-group">
+                    <input type="text" name="phone" id="phone" placeholder="Nomor HP" value="{{ old('phone', $user->phone ?? '') }}" required>
+                    @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+
+                <h3><i class="fa-solid fa-credit-card"></i> Metode Pembayaran</h3>
+                <div class="form-group">
+                    <select id="payment-method" name="payment_method" required>
+                        <option value="bca">BCA</option>
+                        <option value="bni">BNI</option>
+                        <option value="bri">BRI</option>
+                        <option value="mandiri">Mandiri</option>
+                        <option value="gopay">GoPay</option>
+                        <option value="dana">DANA</option>
+                        <option value="ovo">OVO</option>
+                        <option value="shopeepay">ShopeePay</option>
+                        <option value="credit-card">Kartu Kredit</option>
+                        <option value="paypal">PayPal</option>
+                    </select>
+                    @error('payment_method') <span class="text-danger">{{ $message }}</span> @enderror
+                </div>
+
+                <button id="place-order" type="submit"><i class="fa-solid fa-check"></i> Pesan Sekarang</button>
             </form>
-
-            <h3><i class="fa-solid fa-credit-card"></i> Metode Pembayaran</h3>
-            <select id="payment-method">
-                <option value="bca">BCA</option>
-                <option value="bni">BNI</option>
-                <option value="bri">BRI</option>
-                <option value="mandiri">Mandiri</option>
-                <option value="gopay">GoPay</option>
-                <option value="dana">DANA</option>
-                <option value="ovo">OVO</option>
-                <option value="shopeepay">ShopeePay</option>
-                <option value="credit-card">Kartu Kredit</option>
-                <option value="paypal">PayPal</option>
-            </select>
-
-            <button id="place-order"><i class="fa-solid fa-check"></i> Pesan Sekarang</button>
         </div>
     </div>
 </body>
+
 </html>

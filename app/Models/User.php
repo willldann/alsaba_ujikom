@@ -26,5 +26,12 @@ class User extends Authenticatable
         'password' => 'hashed', // Laravel 10+ mendukung hashing otomatis
         'email_verified_at' => 'datetime',
     ];
+
+    use HasFactory, Notifiable;
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }
 

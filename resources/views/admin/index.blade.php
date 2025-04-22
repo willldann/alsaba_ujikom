@@ -4,17 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <!-- My CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/admin/style.css">
 
     <title>AdminHub</title>
 </head>
 
 <body>
-
 
     <!-- SIDEBAR -->
     <section id="sidebar">
@@ -22,7 +21,6 @@
             <i class='bx bxs-smile'></i>
             <span class="text">AdminHub</span>
         </a>
-        <!-- Sidebar: Ubah bagian ini -->
         <ul class="side-menu top">
             <li class="active">
                 <a href="{{ route('dashboard') }}">
@@ -48,19 +46,15 @@
             <li>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <button type="submit" class="logout"
-                        style="all: unset; cursor: pointer; display: flex; align-items: center;">
+                    <button type="submit" class="logout" style="all: unset; cursor: pointer; display: flex; align-items: center;">
                         <i class='bx bxs-log-out-circle'></i>
                         <span class="text">Logout</span>
                     </button>
                 </form>
             </li>
         </ul>
-
     </section>
     <!-- SIDEBAR -->
-
-
 
     <!-- CONTENT -->
     <section id="content">
@@ -85,26 +79,25 @@
                 <li>
                     <i class='bx bxs-calendar-check'></i>
                     <span class="text">
-                        <h3>1020</h3>
+                        <h3>{{ $newOrders }}</h3>
                         <p>New Order</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
-                        <h3>2834</h3>
+                        <h3>{{ $visitors }}</h3>
                         <p>Visitors</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-dollar-circle'></i>
                     <span class="text">
-                        <h3>$2543</h3>
-                        <p>Total Sales</p>
+                        <h3>Rp{{ number_format($totalSales, 0, ',', '.') }}</h3>
+                        <p>Total Penjualan</p>
                     </span>
-                </li>
+                </li>                
             </ul>
-
 
             <div class="table-data">
                 <div class="order">
@@ -122,46 +115,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status process">Process</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status pending">Pending</span></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <img src="img/people.png">
-                                    <p>John Doe</p>
-                                </td>
-                                <td>01-10-2021</td>
-                                <td><span class="status completed">Completed</span></td>
-                            </tr>
+                            @foreach ($recentOrders as $order)
+                                <tr>
+                                    <td>
+                                        <img src="img/people.png" alt="user">
+                                        <p>{{ $order->user->name }}</p>
+                                    </td>
+                                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
+                                    <td><span class="status {{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -170,7 +133,6 @@
         <!-- MAIN -->
     </section>
     <!-- CONTENT -->
-
 
     <script src="script.js"></script>
 </body>

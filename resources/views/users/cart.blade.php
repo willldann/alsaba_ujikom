@@ -6,35 +6,6 @@
     <title>Shopping Cart - Dendeng</title>
     <link rel="stylesheet" href="/css/cart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <script>
-    function updatePrice() {
-        let total = 0;
-        document.querySelectorAll(".cart-item").forEach(item => {
-            let price = parseFloat(item.querySelector(".price").textContent.replace('Rp', '').replace(/\./g, '').replace(',', ''));
-            total += price;
-        });
-        document.getElementById('total-price').textContent = `Rp${total.toLocaleString('id-ID')}`;
-    }
-
-    function changeQuantity(itemIndex, price, change) {
-        let quantityInput = document.getElementById(`quantity-${itemIndex}`);
-        let priceElement = document.getElementById(`price-${itemIndex}`);
-        let newValue = parseInt(quantityInput.value) + change;
-        if (newValue > 0) {
-            quantityInput.value = newValue;
-            priceElement.textContent = `Rp${(price * newValue).toLocaleString('id-ID')}`;
-            updatePrice();
-        }
-    }
-
-    function removeItem(itemIndex) {
-        let item = document.getElementById(`item-${itemIndex}`);
-        item.remove();
-        updatePrice();
-    }
-
-    document.addEventListener("DOMContentLoaded", updatePrice);
-    </script>
 </head>
 <body>
 
@@ -44,28 +15,62 @@
         <h2><i class="fa-solid fa-cart-shopping"></i> Shopping Cart - Dendeng</h2>
 
         <div class="cart-items">
-            @foreach($products as $index => $product)
-            <div class="cart-item" id="item-{{ $index + 1 }}">
-                <img src="{{ asset($product->image_url) }}" alt="{{ $product->name }}">
-                <div class="cart-item-details">
-                    <strong>{{ $product->name }}</strong><br>
-                    <span>Berat: {{ $product->weight }}</span>
+            @php
+                $total = 0;
+            @endphp
+
+            @foreach($cartItems as $index => $item)
+                @php
+                    $product = $item->product;
+                    $subtotal = $product->price * $item->quantity;
+                    $total += $subtotal;
+                @endphp
+                <div class="cart-item" id="item-{{ $item->id }}">
+                    <img src="/storage/{{ $product->image }}" alt="{{ $product->name }}">
+                    
+                    <div class="cart-item-details">
+                        <strong>{{ $product->name }}</strong><br>
+                        <span>Berat: {{ $product->weight }}</span>
+                    </div>
+
+                    <!-- Tombol Kurang - Jumlah - Tambah -->
+                    <div class="quantity-controls">
+                        <form action="{{ route('users.cart.update', $item->id) }}" method="POST" class="quantity-form">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" name="change" value="-1">
+                            <button type="submit" class="qty-btn"><i class="fa-solid fa-minus"></i></button>
+                        </form>
+
+                        <input type="text" class="qty-input" value="{{ $item->quantity }}" readonly>
+
+                        <form action="{{ route('users.cart.update', $item->id) }}" method="POST" class="quantity-form">
+                            @csrf
+                            @method('PATCH')
+                            <input type="hidden" name="change" value="1">
+                            <button type="submit" class="qty-btn"><i class="fa-solid fa-plus"></i></button>
+                        </form>
+                    </div>
+
+                    <!-- Harga -->
+                    <div class="price">Rp{{ number_format($subtotal, 0, ',', '.') }}</div>
+
+                    <!-- Tombol Hapus -->
+                    <form action="{{ route('users.cart.remove', $item->product_id) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button class="remove-btn" type="submit"><i class="fa-solid fa-trash-can"></i></button>
+                    </form>
                 </div>
-                <div class="quantity-controls">
-                    <button onclick="changeQuantity({{ $index + 1 }}, {{ $product->price }}, -1)"><i class="fa-solid fa-minus"></i></button>
-                    <input type="text" id="quantity-{{ $index + 1 }}" value="1" readonly>
-                    <button onclick="changeQuantity({{ $index + 1 }}, {{ $product->price }}, 1)"><i class="fa-solid fa-plus"></i></button>
-                </div>
-                <div class="price" id="price-{{ $index + 1 }}">Rp{{ number_format($product->price, 0, ',', '.') }}</div>
-                <button class="remove-btn" onclick="removeItem({{ $index + 1 }})"><i class="fa-solid fa-trash-can"></i></button>
-            </div>
             @endforeach
         </div>
 
         <div class="cart-summary">
-            <p><strong>Total: <span id="total-price">Rp0</span></strong></p>
+            <p><strong>Total: <span id="total-price">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
             <p>🚚 Pengiriman: <span class="free">Gratis</span></p>
-            <button class="checkout-button" onclick="window.location.href='{{ route('users.checkout') }}'"><i class="fa-solid fa-credit-card"></i> Checkout</button>
+            <button class="checkout-button" onclick="window.location.href='{{ route('users.checkout') }}'">
+                <i class="fa-solid fa-credit-card"></i> Checkout
+            </button>
         </div>
     </div>
 

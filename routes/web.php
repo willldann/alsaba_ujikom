@@ -5,6 +5,8 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -83,4 +85,23 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/products/{product}/edit', [ProductController::class, 'edit'])->name('products.edit');
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
+
+
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    // Route to display the checkout page (GET request)
+    Route::middleware('auth')->get('/checkout', [CheckoutController::class, 'index'])->name('users.checkout');
+
+    // Route to handle placing the order (POST request)
+    Route::middleware('auth')->post('/checkout', [CheckoutController::class, 'placeOrder'])->name('users.checkout.placeOrder');
+
+    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
+
+    // Semua route di-protect middleware auth
+    Route::middleware(['auth'])->group(function () {
+        Route::get('/cart', [CartController::class, 'index'])->name('users.cart');                     // Tampilkan cart
+        Route::post('/cart/add/{id}', [CartController::class, 'addToCart'])->name('users.cart.add');   // Tambah ke cart
+        Route::patch('/cart/update/{id}', [CartController::class, 'updateCart'])->name('users.cart.update'); // Update quantity
+        Route::delete('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('users.cart.remove'); // Hapus item
+    });
 });

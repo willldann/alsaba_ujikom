@@ -18,7 +18,7 @@
                 <li><a href="{{ url('about') }}" class="{{ Request::is('about') ? 'active' : '' }}">About</a></li>
                 <li><a href="{{ url('contact') }}" class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                 </li>
-                <li><a href="{{ url('cart') }}">🛒 Cart</a></li>
+                <li><a href="{{ url('cart') }}" class="{{ Request::is('cart') ? 'active' : '' }}">🛒 Cart</a></li>
                 <li><a href="{{ url('login') }}" onclick="openModal('loginModal')">Login</a></li>
             @endguest
             @auth
@@ -38,7 +38,7 @@
                     <li><a href="{{ url('about') }}" class="{{ Request::is('about') ? 'active' : '' }}">About</a></li>
                     <li><a href="{{ url('contact') }}" class="{{ Request::is('contact') ? 'active' : '' }}">Contact</a>
                     </li>
-                    <li><a href="{{ url('cart') }}">🛒 Cart</a></li>
+                    <li><a href="{{ url('cart') }}"  class="{{ Request::is('cart') ? 'active' : '' }}">Cart</a></li>
                 @endif
                 <li><a href="#">Halo, {{ Auth::user()->name }}!</a></li>
 

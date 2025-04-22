@@ -1,130 +1,144 @@
-body {
+/* — Global Reset & Base — */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
     font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f8f8f8;
-}
-
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 5%;
-    background-color: #fff;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.logo span {
-    color: #e67e22;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    text-decoration: none;
+    background: #f8f8f8;
     color: #333;
-    transition: color 0.3s;
-}
-
-nav ul li a:hover, .active {
-    color: #e67e22;
-}
-
-.product-detail {
+    line-height: 1.6;
+  }
+  
+  /* — Container Utama — */
+  .product-detail {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-start;
+    gap: 40px;
     padding: 50px 5%;
-    gap: 50px;
-}
-
-.product-gallery {
+  }
+  
+  /* — Galeri Gambar — */
+  .product-gallery {
     flex: 1;
+    max-width: 500px;
     text-align: center;
-}
-
-#main-image {
+  }
+  #main-image {
     width: 100%;
     max-width: 400px;
+    max-height: 400px;
+    object-fit: contain;           /* menampilkan seluruh gambar tanpa crop */
+    background: #fff;              /* latar putih jika ada space */
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.thumbnail-container {
-    margin-top: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: opacity 0.3s;
+  }
+  
+  /* — Thumbnail — */
+  .thumbnail-container {
+    margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 10px;
-}
-
-.thumbnail {
+    flex-wrap: wrap;
+  }
+  .thumbnail {
     width: 80px;
     height: 80px;
     object-fit: cover;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: transform 0.3s;
-}
-
-.thumbnail:hover {
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .thumbnail:hover {
     transform: scale(1.1);
-}
-
-.product-info {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  }
+  
+  /* — Info Produk — */
+  .product-info {
     flex: 1;
-    background-color: #fff;
-    padding: 20px;
+    max-width: 500px;
+    background: #fff;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
-
-.product-info h1 {
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+  }
+  .product-info h1 {
     font-size: 28px;
     margin-bottom: 10px;
-}
-
-.price {
+  }
+  .price {
     font-size: 24px;
     color: #e67e22;
     font-weight: bold;
     margin-bottom: 20px;
-}
-
-select, input {
+  }
+  .product-info form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 30px;
+  }
+  .product-info label {
+    font-size: 16px;
+  }
+  .product-info select,
+  .product-info input {
     width: 100%;
     padding: 10px;
-    margin-bottom: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-.buy-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #e67e22;
+    border-radius: 6px;
+    font-size: 14px;
+  }
+  .buy-btn {
+    background: #e67e22;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 6px;
+    padding: 12px;
     font-size: 16px;
+    font-weight: bold;
     cursor: pointer;
     transition: background 0.3s;
-}
-
-.buy-btn:hover {
-    background-color: #d35400;
-}
+  }
+  .buy-btn:hover {
+    background: #d35400;
+  }
+  .product-info h2 {
+    font-size: 20px;
+    margin-bottom: 8px;
+  }
+  .product-info p {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.5;
+  }
+  
+  /* — Responsive — */
+  @media (max-width: 768px) {
+    .product-detail {
+      flex-direction: column;
+      align-items: center;
+    }
+    .product-gallery,
+    .product-info {
+      max-width: 100%;
+    }
+    #main-image {
+      max-width: 90%;
+      max-height: none;
+      height: auto;
+    }
+    .thumbnail {
+      width: 60px;
+      height: 60px;
+    }
+  }
+  

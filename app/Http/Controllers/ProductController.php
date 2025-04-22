@@ -89,7 +89,7 @@ class ProductController extends Controller
         $product = Product::findOrFail($id);
 
         // Kirim data produk ke view edit
-        return view('products.edit', compact('product'));
+        return view('admin.edit', compact('product'));
     }
 
     // Memperbarui produk
