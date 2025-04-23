@@ -17,6 +17,15 @@ class ProductController extends Controller
         return view('users.product', compact('products'));
     }
 
+    public function wildan()
+    {
+        // Ambil semua produk dari database
+        $products = Product::all();
+
+        // Kirim data produk ke view
+        return view('users.product', compact('products'));
+    }
+
     // Menampilkan detail produk
     public function show($id)
     {

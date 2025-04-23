@@ -25,11 +25,6 @@
                 @if (Auth::user()->role == 'admin')
                     <li><a href="{{ url('admin/dashboard') }}"
                             class="{{ Request::is('admin/dashboard') ? 'active' : '' }}">Admin Dashboard</a></li>
-                    <li><a href="{{ url('admin/products') }}"
-                            class="{{ Request::is('admin/products') ? 'active' : '' }}">Manage Products</a></li>
-                    <li><a href="{{ url('admin/orders') }}"
-                            class="{{ Request::is('admin/orders') ? 'active' : '' }}">Manage
-                            Orders</a></li>
                 @elseif (Auth::user()->role == 'user')
                     <li><a href="{{ url('dashboard') }}"
                             class="{{ Request::is('dashboard') ? 'active' : '' }}">Dashboard</a></li>

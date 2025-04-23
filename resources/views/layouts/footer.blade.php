@@ -14,14 +14,6 @@
             <h3>Information</h3>
             <a href="about">About Us</a>
         </div>
-
-        <div class="footer-section">
-            <h3>Subscribe More Info</h3>
-            <div class="subscribe-box">
-                <input type="email" placeholder="Enter your Email">
-                <button>Subscribe</button>
-            </div>
-        </div>
     </div>
 
     <div class="social-icons">

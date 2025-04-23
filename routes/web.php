@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -47,7 +48,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('users.cart');
     Route::get('/cart/add/{id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::view('/checkout', 'users.checkout')->name('users.checkout');
 
     // Add other pages that should only be accessed when logged in:
     // Route::view('/profile', 'users.profile')->name('users.profile');
@@ -71,9 +71,11 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.add_produk'); // pastikan file produk/add.blade.php ada
     })->name('add_produk');
 
-    Route::get('/my-store', function () {
-        return view('admin.my_store'); // pastikan ada view my_store.blade.php
-    })->name('my_store');
+    // Route untuk menyimpan data produk (POST request)
+    Route::post('/add_produk', [ProductController::class, 'store'])->name('products.store');
+
+    // Route to display the store page
+    Route::get('/my-store', [ProductController::class, 'wildan'])->name('my_store');
 
     // routes/web.php
 
@@ -89,13 +91,14 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
-    // Route to display the checkout page (GET request)
-    Route::middleware('auth')->get('/checkout', [CheckoutController::class, 'index'])->name('users.checkout');
+    Route::middleware('auth')->group(function () {
+        // Menampilkan halaman checkout
+        Route::get('/checkout', [CheckoutController::class, 'index'])->name('users.checkout');
 
-    // Route to handle placing the order (POST request)
-    Route::middleware('auth')->post('/checkout', [CheckoutController::class, 'placeOrder'])->name('users.checkout.placeOrder');
+        // Menangani pemrosesan order
+        Route::post('/checkout', [CheckoutController::class, 'placeOrder'])->name('users.checkout.placeOrder');
+    });
 
-    Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 
     // Semua route di-protect middleware auth
     Route::middleware(['auth'])->group(function () {
