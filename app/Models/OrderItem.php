@@ -9,19 +9,20 @@ class OrderItem extends Model
 {
     use HasFactory;
 
-    // Define the table (optional, if you use a custom table name)
+    // Menentukan nama tabel (opsional, jika menggunakan nama tabel kustom)
     protected $table = 'order_items';
 
-    // Fillable attributes for mass assignment
+    // Atribut yang dapat diisi (fillable) untuk mass assignment
     protected $fillable = [
         'order_id',
         'product_name',
         'quantity',
         'price',
         'total',
+        'weight', // Menambahkan kolom weight
     ];
 
-    // Define relationship with Order model
+    // Definisikan relasi dengan model Order
     public function order()
     {
         return $this->belongsTo(Order::class);

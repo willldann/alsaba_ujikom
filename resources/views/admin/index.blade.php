@@ -35,11 +35,11 @@
                 </a>
             </li>
             <li>
-                <a href="#">
+                <a href="{{ route('users.index') }}">
                     <i class='bx bxs-group'></i>
                     <span class="text">User</span>
                 </a>
-            </li>
+            </li>            
         </ul>
 
         <ul class="side-menu">

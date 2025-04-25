@@ -7,66 +7,70 @@
     <title>Checkout - Dendeng</title>
     <link rel="stylesheet" href="/css/checkout.css">
     <script defer src="/js/checkout.js"></script>
-
-    <!-- Pastikan FontAwesome telah dimuat jika menggunakan ikon -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
     <div class="checkout-container">
-        <!-- Bagian Kiri (Ringkasan Pesanan) -->
+        <!-- Kiri: Ringkasan Pesanan -->
         <div class="checkout-left">
             <h2><i class="fa-solid fa-shopping-cart"></i> Ringkasan Pesanan</h2>
             <div class="cart-summary">
                 @foreach ($cartItems as $item)
                 <div class="cart-item">
-                    <!-- Cek apakah $item adalah array atau objek, dan pastikan 'image' ada -->
-                    <img src="{{ is_array($item) && isset($item['image']) ? $item['image'] : (isset($item->image) ? $item->image : '/default-image.jpg') }}" alt="{{ is_array($item) ? $item['name'] : $item->name }}">
+                    <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}">
                     <div class="cart-details">
-                        <strong>{{ is_array($item) ? $item['name'] : $item->name }}</strong>
-                        <p>{{ is_array($item) ? $item['quantity'] : $item->quantity }} x {{ is_array($item) ? $item['weight'] : $item->weight }}</p>
-                        <p class="price">Rp{{ number_format(is_array($item) ? $item['price'] : $item->price, 0, ',', '.') }}</p>
+                        <strong>{{ $item->product->name }}</strong>
+                        <p>{{ $item->quantity }} x Rp{{ number_format($item->product->price, 0, ',', '.') }}</p>
+                        <p class="price">Rp{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</p>
+                        <p>Berat: {{ number_format($item->product->weight * $item->quantity, 2, ',', '.') }} kg</p>
                     </div>
                 </div>
                 @endforeach
 
                 <div class="cart-total">
                     <p><strong>Total: <span id="checkout-total">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
+                    <p><strong>Total Berat: <span id="checkout-total-weight">{{ number_format($totalWeight, 2, ',', '.') }} kg</span></strong></p>
                 </div>
             </div>
         </div>
 
-        <!-- Bagian Kanan (Formulir Pengiriman & Pembayaran) -->
+        <!-- Kanan: Formulir -->
         <div class="checkout-right">
+            <a href="{{ route('users.cart') }}" class="back-button">
+                <i class="fa-solid fa-arrow-left"></i> Kembali ke Keranjang
+            </a>
+
             <h2><i class="fa-solid fa-truck"></i> Pengiriman & Pembayaran</h2>
 
             <form id="shipping-form" method="POST" action="{{ route('checkout.placeOrder') }}">
                 @csrf
-                <!-- Isi otomatis dengan data user -->
+
                 <div class="form-group">
-                    <input type="text" name="name" id="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name ?? '') }}" required>
+                    <input type="text" name="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name ?? '') }}" required>
                     @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" name="address" id="address" placeholder="Alamat Lengkap" value="{{ old('address', $user->address ?? '') }}" required>
+                    <input type="text" name="address" placeholder="Alamat Lengkap" value="{{ old('address', $user->address ?? '') }}" required>
                     @error('address') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" name="city" id="city" placeholder="Kota" value="{{ old('city', $user->city ?? '') }}" required>
+                    <input type="text" name="city" placeholder="Kota" value="{{ old('city', $user->city ?? '') }}" required>
                     @error('city') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" name="postal_code" id="postal-code" placeholder="Kode Pos" value="{{ old('postal_code', $user->postal_code ?? '') }}" required>
+                    <input type="text" name="postal_code" placeholder="Kode Pos" value="{{ old('postal_code', $user->postal_code ?? '') }}" required>
                     @error('postal_code') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" name="phone" id="phone" placeholder="Nomor HP" value="{{ old('phone', $user->phone ?? '') }}" required>
+                    <input type="text" name="phone" placeholder="Nomor HP" value="{{ old('phone', $user->phone ?? '') }}" required>
                     @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
                 <h3><i class="fa-solid fa-credit-card"></i> Metode Pembayaran</h3>
                 <div class="form-group">
-                    <select id="payment-method" name="payment_method" required>
+                    <select name="payment_method" required>
+                        <option value="">-- Pilih Metode --</option>
                         <option value="bca">BCA</option>
                         <option value="bni">BNI</option>
                         <option value="bri">BRI</option>
@@ -81,7 +85,9 @@
                     @error('payment_method') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
 
-                <button id="place-order" type="submit"><i class="fa-solid fa-check"></i> Pesan Sekarang</button>
+                <button type="submit" class="submit-button">
+                    <i class="fa-solid fa-check"></i> Pesan Sekarang
+                </button>
             </form>
         </div>
     </div>

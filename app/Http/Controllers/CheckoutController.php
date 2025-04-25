@@ -3,90 +3,76 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\CartItem;
 use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends Controller
 {
     // Menampilkan halaman checkout
     public function index()
     {
-        $user = Auth::user(); // Ambil data user
+        $user = Auth::user();
 
-        $cart = Cart::where('user_id', 13)->get(); // Ambil keranjang berdasarkan user yang sedang login
+        // Ambil item di keranjang user dengan data produk
+        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
 
-        // dd($cart);
-        
-        if ($cart->isEmpty()) {
-            // Jika keranjang kosong, arahkan kembali dengan pesan error
-            return redirect()->route('home')->with('error', 'Keranjang Anda kosong.');
-        }        
-
-        // Ambil item keranjang dari tabel cart_items
-        $cartItems = $cart->quantity; 
-        $total = 0;
-
-        // Validasi dan hitung total harga
-        if ($cartItems->count() > 0) {
-            foreach ($cartItems as $item) {
-                // Pastikan item memiliki data yang valid
-                $total += $item->product->price * $item->quantity;
-            }
-        } else {
+        if ($cartItems->isEmpty()) {
             return redirect()->route('home')->with('error', 'Keranjang Anda kosong.');
         }
 
-        return view('users.checkout', compact('user', 'cartItems', 'total'));
+        $total = 0;
+        $totalWeight = 0; // Inisialisasi variabel untuk total berat
+
+        foreach ($cartItems as $item) {
+            $total += $item->product->price * $item->quantity;
+            $totalWeight += $item->product->weight * $item->quantity; // Tambahkan perhitungan berat
+        }
+
+        return view('users.checkout', compact('user', 'cartItems', 'total', 'totalWeight'));
     }
 
     // Proses pemesanan
     public function placeOrder(Request $request)
     {
-        // Validasi input dari form
         $request->validate([
-            'address' => 'required|string|max:255', // Menggunakan 'address' sesuai form
-            'phone' => 'required|string|max:20', // Menggunakan 'phone' sesuai form
-            'payment_method' => 'required|string|in:credit_card,paypal,bca,mandiri', // Validasi metode pembayaran
+            'address' => 'required|string|max:255',
+            'phone' => 'required|string|max:20',
+            'payment_method' => 'required|string|in:credit_card,paypal,bca,mandiri',
         ]);
 
-        // Ambil keranjang pengguna
         $user = Auth::user();
-        $cart = $user->cart; // Ambil keranjang pengguna dari database
+        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
 
-        if (!$cart || $cart->items->count() == 0) {
+        if ($cartItems->isEmpty()) {
             return redirect()->route('checkout.index')->with('error', 'Keranjang Anda kosong.');
         }
 
-        // Simpan order
+        // Buat order baru
         $order = Order::create([
             'user_id' => $user->id,
-            'alamat' => $request->address, // Pastikan ini konsisten dengan field di form
-            'telepon' => $request->phone, // Pastikan ini konsisten dengan field di form
+            'alamat' => $request->address,
+            'telepon' => $request->phone,
             'payment_method' => $request->payment_method,
-            'status' => 'pending', // Status default
+            'status' => 'pending',
         ]);
 
-        // Simpan item order dari cart_items
-        foreach ($cart->items as $item) {
+        // Simpan detail produk ke OrderItem
+        foreach ($cartItems as $item) {
             OrderItem::create([
                 'order_id' => $order->id,
-                'product_name' => $item->product->name, // Asumsi ada field 'name' di produk
+                'product_name' => $item->product->name,
                 'quantity' => $item->quantity,
-                'price' => $item->product->price, // Ambil harga produk dari tabel products
+                'price' => $item->product->price,
                 'total' => $item->product->price * $item->quantity,
+                'weight' => $item->product->weight, // Tambahkan ini
             ]);
         }
 
-        // Hapus item keranjang setelah pemesanan
-        $cart->items()->delete(); // Hapus semua item di keranjang  
-        $cart->delete(); // Hapus keranjang itu sendiri
+        // Hapus cart setelah checkout
+        Cart::where('user_id', $user->id)->delete();
 
-        // Redirect ke halaman utama dengan pesan sukses
         return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
     }
 }
-

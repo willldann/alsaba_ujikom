@@ -14,7 +14,7 @@
     <section id="content">
         <nav>
             <i class='bx bx-menu'></i>
-            <a href="{{ route('dashboard') }}" class="nav-link">My Store</a>
+            <a href="{{ route('admin.dashboard') }}" class="nav-link">My Store</a>
         </nav>
 
         <main>

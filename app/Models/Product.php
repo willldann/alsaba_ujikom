@@ -11,7 +11,7 @@ class Product extends Model
 
     // Tentukan kolom-kolom yang bisa diisi
     protected $fillable = [
-        'name', 'category', 'price', 'stock', 'status', 'image'
+        'name', 'category', 'price', 'stock', 'status', 'image',  'weight'
     ];
 }
 

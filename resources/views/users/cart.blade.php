@@ -409,7 +409,8 @@
                     
                     <div class="cart-item-details">
                         <strong>{{ $product->name }}</strong>
-                        <span>Berat: {{ $product->weight }}</span>
+                        <!-- Berat total yang sudah dihitung berdasarkan jumlah -->
+                        <span>Berat: {{ $product->weight * $item->quantity }} kg</span>
                     </div>
 
                     <div class="quantity-controls">
@@ -444,7 +445,7 @@
         <div class="cart-summary">
             <p><strong>Total: <span id="total-price">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
             <p>🚚 Pengiriman: <span class="free">Gratis</span></p>
-            <button class="checkout-button" onclick="window.location.href='{{ route('users.checkout') }}'">
+            <button class="checkout-button" onclick="window.location.href='{{ route('checkout.index') }}'">
                 <i class="fa-solid fa-credit-card"></i> Checkout
             </button>
         </div>

@@ -31,7 +31,13 @@
         <div class="form-group">
           <label for="price">Harga (Rp)</label>
           <input type="number" id="price" name="price" placeholder="Contoh: 15000" required>
-        </div>        
+        </div>
+
+        <!-- 👇 Tambahkan Form Berat Produk -->
+        <div class="form-group">
+          <label for="weight">Berat (kg)</label>
+          <input type="number" step="0.01" id="weight" name="weight" placeholder="Contoh: 0.25" required>
+        </div>
 
         <div class="form-group">
           <label for="image">Upload Image</label>
