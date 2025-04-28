@@ -77,6 +77,9 @@
         // Route to display the store page
         Route::get('/my-store', [ProductController::class, 'wildan'])->name('my_store');
 
+        // route add product
+        Route::get('admin/product_admin', [ProductController::class, 'myStore'])->name('admin.product_admin');
+
         // routes/web.php
 
         // Custom route untuk halaman toko admin (view khusus)

@@ -185,29 +185,6 @@
             color: #6b7280;
         }
 
-        .status-badge {
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 9999px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .completed {
-            background-color: #d1fae5;
-            color: #065f46;
-        }
-
-        .in-progress {
-            background-color: #fef3c7;
-            color: #92400e;
-        }
-
-        .hold {
-            background-color: #f3e8ff;
-            color: #6b21a8;
-        }
-
         .btn {
             padding: 8px 12px;
             font-size: 14px;
@@ -290,7 +267,6 @@
                         <th>#</th>
                         <th>Customer</th>
                         <th>Role</th>
-                        <th>Status</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -308,11 +284,6 @@
                             </td>
                             <td>{{ ucfirst($user->role) }}</td>
                             <td>
-                                <span class="status-badge {{ $user->status ?? 'completed' }}">
-                                    {{ ucfirst($user->status ?? 'Completed') }}
-                                </span>
-                            </td>
-                            <td>
                                 <div class="actions">
                                     <form action="{{ route('users.destroy', $user->id) }}" method="POST"
                                         style="display:inline">
@@ -326,7 +297,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" style="text-align: center;">No users found.</td>
+                            <td colspan="4" style="text-align: center;">No users found.</td>
                         </tr>
                     @endforelse
                 </tbody>

@@ -396,6 +396,7 @@
         <div class="cart-items">
             @php
                 $total = 0;
+                $totalWeightAll = 0;
             @endphp
 
             @foreach($cartItems as $index => $item)
@@ -403,14 +404,22 @@
                     $product = $item->product;
                     $subtotal = $product->price * $item->quantity;
                     $total += $subtotal;
+
+                    // Hitung total berat per item (gram)
+                    $totalWeight = $item->quantity * 50; // Berat produk dalam gram (50 gram per item)
+                    $formattedWeight = $totalWeight >= 1000
+                        ? number_format($totalWeight / 1000, 2) . ' kg'
+                        : $totalWeight . ' gram';
+
+                    $totalWeightAll += $totalWeight;
                 @endphp
+
                 <div class="cart-item" id="item-{{ $item->id }}">
                     <img src="/storage/{{ $product->image }}" alt="{{ $product->name }}">
-                    
+
                     <div class="cart-item-details">
                         <strong>{{ $product->name }}</strong>
-                        <!-- Berat total yang sudah dihitung berdasarkan jumlah -->
-                        <span>Berat: {{ $product->weight * $item->quantity }} kg</span>
+                        <span>Berat: {{ $formattedWeight }}</span>
                     </div>
 
                     <div class="quantity-controls">
@@ -444,7 +453,16 @@
 
         <div class="cart-summary">
             <p><strong>Total: <span id="total-price">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
+
+            @php
+                $formattedTotalWeight = $totalWeightAll >= 1000
+                    ? number_format($totalWeightAll / 1000, 2) . ' kg'
+                    : $totalWeightAll . ' gram';
+            @endphp
+
+            <p><strong>Total Berat: </strong>{{ $formattedTotalWeight }}</p>
             <p>🚚 Pengiriman: <span class="free">Gratis</span></p>
+
             <button class="checkout-button" onclick="window.location.href='{{ route('checkout.index') }}'">
                 <i class="fa-solid fa-credit-card"></i> Checkout
             </button>

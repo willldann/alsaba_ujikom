@@ -16,21 +16,46 @@
         <div class="checkout-left">
             <h2><i class="fa-solid fa-shopping-cart"></i> Ringkasan Pesanan</h2>
             <div class="cart-summary">
+                @php
+                    $totalWeightAll = 0;
+                    $total = 0;
+                @endphp
+
                 @foreach ($cartItems as $item)
-                <div class="cart-item">
-                    <img src="{{ asset('storage/' . $item->product->image) }}" alt="{{ $item->product->name }}">
-                    <div class="cart-details">
-                        <strong>{{ $item->product->name }}</strong>
-                        <p>{{ $item->quantity }} x Rp{{ number_format($item->product->price, 0, ',', '.') }}</p>
-                        <p class="price">Rp{{ number_format($item->product->price * $item->quantity, 0, ',', '.') }}</p>
-                        <p>Berat: {{ number_format($item->product->weight * $item->quantity, 2, ',', '.') }} kg</p>
+                    @php
+                        $product = $item->product;
+                        $quantity = $item->quantity;
+
+                        $totalWeight = $quantity * 50; // 50 gram per produk
+                        $formattedWeight = $totalWeight >= 1000
+                            ? number_format($totalWeight / 1000, 2, ',', '.') . ' kg'
+                            : $totalWeight . ' gram';
+
+                        $subtotal = $product->price * $quantity;
+                        $total += $subtotal;
+                        $totalWeightAll += $totalWeight;
+                    @endphp
+
+                    <div class="cart-item">
+                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                        <div class="cart-details">
+                            <strong>{{ $product->name }}</strong>
+                            <p>{{ $quantity }} x Rp{{ number_format($product->price, 0, ',', '.') }}</p>
+                            <p class="price">Rp{{ number_format($subtotal, 0, ',', '.') }}</p>
+                            <p>Berat: {{ $formattedWeight }}</p>
+                        </div>
                     </div>
-                </div>
                 @endforeach
+
+                @php
+                    $formattedTotalWeight = $totalWeightAll >= 1000
+                        ? number_format($totalWeightAll / 1000, 2, ',', '.') . ' kg'
+                        : $totalWeightAll . ' gram';
+                @endphp
 
                 <div class="cart-total">
                     <p><strong>Total: <span id="checkout-total">Rp{{ number_format($total, 0, ',', '.') }}</span></strong></p>
-                    <p><strong>Total Berat: <span id="checkout-total-weight">{{ number_format($totalWeight, 2, ',', '.') }} kg</span></strong></p>
+                    <p><strong>Total Berat: <span id="checkout-total-weight">{{ $formattedTotalWeight }}</span></strong></p>
                 </div>
             </div>
         </div>

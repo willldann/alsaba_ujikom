@@ -69,7 +69,9 @@
   gap: 10px; /* jarak antar tombol */
 }
 
-.product-buttons a {
+/* Styling untuk tombol umum (Lihat Detail & Beli Sekarang) */
+.product-buttons a,
+.product-buttons button {
   flex: 1;
   background: linear-gradient(to right, #f39c12, #e67e22);
   border: none;
@@ -85,10 +87,19 @@
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.product-buttons a:hover {
+/* Hover effect for both buttons */
+.product-buttons a:hover,
+.product-buttons button:hover {
   background: linear-gradient(to right, #e67e22, #d35400);
   transform: translateY(-2px);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+}
+
+/* Optional: You can target button-specific styles if needed */
+.product-buttons button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Responsiveness */
@@ -107,6 +118,6 @@
 
   .product-grid {
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-  }
+    gap: 15px;
+  }
 }

@@ -30,14 +30,10 @@
             <form action="{{ route('cart.add', $product->id) }}" method="POST">
                 @csrf
                 
-                <label for="size">Ukuran:</label>
-                <select name="size" id="size" required>
-                    <option disabled selected>Pilih Ukuran</option>
-                    @foreach ($product->sizes as $size)
-                        <option value="{{ $size }}">{{ $size }}</option>
-                    @endforeach
-                </select>
-    
+                <!-- Berat produk otomatis -->
+                <label for="weight">Berat Produk:</label>
+                <input type="text" name="weight" id="weight" value="50 gram" readonly required>
+
                 <label for="quantity">Jumlah:</label>
                 <input type="number" name="quantity" id="quantity" value="1" min="1" required>
     
@@ -54,6 +50,23 @@
         function changeImage(element) {
             document.getElementById('main-image').src = element.src;
         }
+
+        // Update berat berdasarkan jumlah
+        document.getElementById('quantity').addEventListener('input', function () {
+            const quantity = parseInt(this.value);
+            const weightPerItem = 50; // gram per produk
+            const totalWeight = quantity * weightPerItem;
+
+            let displayWeight;
+            if (totalWeight >= 1000) {
+                const kg = totalWeight / 1000;
+                displayWeight = `${kg} kg`;
+            } else {
+                displayWeight = `${totalWeight} gram`;
+            }
+
+            document.getElementById('weight').value = displayWeight;
+        });
     </script>
     
 </body>

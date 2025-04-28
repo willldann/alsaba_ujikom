@@ -62,8 +62,7 @@
         <nav>
             <i class='bx bx-menu'></i>
             <a href="#" class="nav-link">Categories</a>
-            <form action="#">
-            </form>
+            <form action="#"></form>
         </nav>
         <!-- NAVBAR -->
 
@@ -123,6 +122,37 @@
                                     </td>
                                     <td>{{ $order->created_at->format('d-m-Y') }}</td>
                                     <td><span class="status {{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Tabel Cart Terbaru -->
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Recent Carts</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($recentCarts as $cart)
+                                <tr>
+                                    <td>
+                                        <p>{{ $cart->user->name }}</p>
+                                    </td>
+                                    <td>{{ $cart->product->name }}</td>
+                                    <td>{{ $cart->quantity }}</td>
+                                    <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram</td>
                                 </tr>
                             @endforeach
                         </tbody>

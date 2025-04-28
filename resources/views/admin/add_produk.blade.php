@@ -33,10 +33,10 @@
           <input type="number" id="price" name="price" placeholder="Contoh: 15000" required>
         </div>
 
-        <!-- 👇 Tambahkan Form Berat Produk -->
+        <!-- 👇 Tambahkan Form Berat Produk dengan nilai tetap 50 gram (0.05 kg) dan readonly -->
         <div class="form-group">
-          <label for="weight">Berat (kg)</label>
-          <input type="number" step="0.01" id="weight" name="weight" placeholder="Contoh: 0.25" required>
+          <label for="weight">Berat (gram)</label>
+          <input type="number" step="0.01" id="weight" name="weight" value="50" readonly placeholder="Contoh: 0.25" required>
         </div>
 
         <div class="form-group">

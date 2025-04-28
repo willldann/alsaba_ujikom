@@ -20,7 +20,7 @@
                 <a href="{{ route('users.product') }}" class="btn">Lihat Produk</a>
             </div>
             <div class="about-image">
-                <img src="{{ asset('assets/about-image.jpg') }}" alt="Tentang Kami">
+                <img src="{{ asset('assets/baner.jpg') }}" alt="Tentang Kami">
             </div>
         </div>
     </section>

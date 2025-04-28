@@ -29,18 +29,38 @@ class CartController extends Controller
             return redirect()->route('login')->with('error', 'Silakan login terlebih dahulu.');
         }
 
+        // Ambil jumlah produk dari input
+        $quantity = (int) $request->input('quantity', 1);
+        if ($quantity < 1) {
+            return redirect()->route('users.cart')->with('error', 'Jumlah produk tidak valid.');
+        }
+
+        // Ambil produk berdasarkan ID
+        $product = Product::findOrFail($id);
+
+        // Berat tetap produk, yaitu 50 gram (0.05 kg)
+        $productWeight = 50; // Berat produk dalam gram
+
+        // Hitung total berat berdasarkan jumlah produk yang dipilih pengguna
+        $totalWeight = $productWeight * $quantity;
+
+        // Cek apakah produk sudah ada di keranjang
         $cartItem = Cart::where('user_id', $user->id)
                         ->where('product_id', $id)
                         ->first();
 
         if ($cartItem) {
-            $cartItem->quantity += 1;
+            // Jika produk sudah ada, update kuantitas dan hitung ulang total berat
+            $cartItem->quantity += $quantity;
+            $cartItem->weight = $cartItem->quantity * $productWeight; // Update total berat
             $cartItem->save();
         } else {
+            // Jika produk belum ada di keranjang, buat item baru di keranjang
             Cart::create([
                 'user_id' => $user->id,
                 'product_id' => $id,
-                'quantity' => 1,
+                'quantity' => $quantity,
+                'weight' => $totalWeight, // Simpan total berat
             ]);
         }
 
@@ -74,6 +94,7 @@ class CartController extends Controller
             $cartItem->delete();
         } else {
             $cartItem->quantity = $newQuantity;
+            $cartItem->weight = $cartItem->quantity * 50; // Update berat berdasarkan kuantitas
             $cartItem->save();
         }
 

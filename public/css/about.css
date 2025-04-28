@@ -1,4 +1,4 @@
-/* Reset */
+/* General Reset */
 * {
     margin: 0;
     padding: 0;
@@ -6,136 +6,132 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; /* Minimum tinggi layar penuh */
-    background-color: #f5f5f5;
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7fa;
     color: #333;
-}
-
-/* Konten utama */
-main {
-    flex: 1; /* Mengisi ruang kosong agar footer tetap di bawah */
+    line-height: 1.6;
 }
 
 /* About Section */
 .about-section {
-    padding: 50px 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #fff;
+    padding: 50px 20px;
+    background: #fff;
 }
 
 .container {
+    max-width: 1200px;
+    margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     align-items: center;
-    max-width: 1100px;
+    gap: 30px;
 }
 
+/* About Content */
 .about-content {
-    max-width: 50%;
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
 }
 
 .about-content h2 {
-    font-size: 2.5em;
-    color: #222;
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.about-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(to right, #f39c12, #e67e22);
 }
 
 .about-content p {
-    font-size: 1.1em;
-    margin: 10px 0;
-    color: #555;
+    font-size: 1.1rem;
+    color: #34495e;
+    margin-bottom: 15px;
 }
 
 .about-content .btn {
     display: inline-block;
-    margin-top: 15px;
-    padding: 10px 20px;
-    background-color: #f4a51c;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
+    background: linear-gradient(to right, #f39c12, #e67e22);
+    color: #fff;
+    padding: 12px 25px;
     border-radius: 5px;
-    transition: 0.3s;
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .about-content .btn:hover {
-    background-color: #e6951d;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
 /* About Image */
+.about-image {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+}
+
 .about-image img {
-    width: 100%;
-    max-width: 400px;
+    max-width: 100%;
+    height: auto;
     border-radius: 10px;
-}
-
-/* Footer */
-footer {
-    background-color: #222;
-    color: white;
-    padding: 20px 10%;
-    text-align: center;
-    margin-top: auto; /* Pastikan footer selalu di bawah */
-}
-
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-}
-
-.footer-info {
-    text-align: left;
-}
-
-.footer-info h3 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-}
-
-.footer-info p {
-    font-size: 0.9em;
-    color: #bbb;
-}
-
-.footer-social {
-    display: flex;
-    gap: 10px;
-}
-
-.footer-social .social-icon img {
-    width: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease;
 }
 
-.footer-social .social-icon:hover img {
-    transform: scale(1.2);
+.about-image img:hover {
+    transform: scale(1.05);
 }
 
-/* Responsive */
+/* Responsive Design */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         text-align: center;
     }
-    .about-content {
-        max-width: 100%;
+
+    .about-content h2 {
+        font-size: 2rem;
     }
-    .about-image img {
-        max-width: 300px;
-        margin-top: 20px;
+
+    .about-content h2::after {
+        left: 50%;
+        transform: translateX(-50%);
     }
-    .footer-container {
-        flex-direction: column;
-        text-align: center;
+
+    .about-content p {
+        font-size: 1rem;
     }
-    .footer-social {
-        margin-top: 10px;
+
+    .about-image {
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: 30px 15px;
+    }
+
+    .about-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .about-content .btn {
+        padding: 10px 20px;
+        font-size: 1rem;
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Order;
+use App\Models\Cart; // Tambahkan model Cart
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,6 +14,7 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
 
+        // Cek apakah user memiliki akses sebagai admin
         if ($user->role == 'user') {
             return redirect()->route('dashboard');
         }
@@ -25,7 +27,10 @@ class DashboardController extends Controller
         // Mengambil 5 pesanan terbaru
         $recentOrders = Order::latest()->take(5)->get();
 
+        // Mengambil 5 cart terbaru
+        $recentCarts = Cart::with('user', 'product')->latest()->take(5)->get(); // ambil 5 cart terbaru
+
         // Kirim data ke view
-        return view('admin.index', compact('newOrders', 'visitors', 'totalSales', 'recentOrders'));
+        return view('admin.index', compact('newOrders', 'visitors', 'totalSales', 'recentOrders', 'recentCarts'));
     }
 }

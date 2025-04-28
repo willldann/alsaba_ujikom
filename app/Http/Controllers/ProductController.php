@@ -10,8 +10,8 @@ class ProductController extends Controller
     // Menampilkan daftar produk
     public function index()
     {
-        // Ambil semua produk dari database
-        $products = Product::all();
+        // Ambil semua produk dari database, urutkan dari yang terbaru
+        $products = Product::orderBy('created_at', 'desc')->get();
 
         // Kirim data produk ke view
         return view('users.product', compact('products'));
@@ -19,8 +19,8 @@ class ProductController extends Controller
 
     public function wildan()
     {
-        // Ambil semua produk dari database
-        $products = Product::all();
+        // Ambil semua produk dari database, urutkan dari yang terbaru
+        $products = Product::orderBy('created_at', 'desc')->get();
 
         // Kirim data produk ke view
         return view('users.product', compact('products'));
@@ -72,7 +72,7 @@ class ProductController extends Controller
         ]);
 
         // Redirect ke halaman produk dengan pesan sukses
-        return redirect()->route('products.index')->with('success', 'Produk berhasil ditambahkan!');
+        return redirect()->route('admin.product_admin')->with('success', 'Produk berhasil ditambahkan!');
     }
 
     // Menghapus produk
@@ -87,7 +87,8 @@ class ProductController extends Controller
     // Menampilkan halaman produk yang dimiliki
     public function myStore()
     {
-        $products = Product::all();
+        // Ambil semua produk dari database, urutkan dari yang terbaru
+        $products = Product::orderBy('created_at', 'desc')->get();
         return view('admin.my_store', compact('products'));
     }
 
@@ -129,6 +130,6 @@ class ProductController extends Controller
         $product->save();
 
         // Redirect ke halaman produk dengan pesan sukses
-        return redirect()->route('products.index')->with('success', 'Produk berhasil diperbarui!');
+        return redirect()->route('admin.product_admin')->with('success', 'Produk berhasil diperbarui!');
     }
 }
