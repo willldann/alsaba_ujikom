@@ -53,19 +53,17 @@
           <span class="gender-title">Gender</span>
           <div class="category">
             <input type="radio" name="gender" value="male" id="dot-1" {{ old('gender') == 'male' ? 'checked' : '' }} required>
-            <label for="dot-1">
-              <span class="dot one"></span>
-              <span class="gender">Male</span>
+            <label>
+              <input type="radio" name="gender" value="male" {{ old('gender') == 'male' ? 'checked' : '' }} required>
+              <span class="dot"></span> Male
             </label>
-            <input type="radio" name="gender" value="female" id="dot-2" {{ old('gender') == 'female' ? 'checked' : '' }}>
-            <label for="dot-2">
-              <span class="dot two"></span>
-              <span class="gender">Female</span>
+            <label>
+              <input type="radio" name="gender" value="female" {{ old('gender') == 'female' ? 'checked' : '' }}>
+              <span class="dot"></span> Female
             </label>
-            <input type="radio" name="gender" value="other" id="dot-3" {{ old('gender') == 'other' ? 'checked' : '' }}>
-            <label for="dot-3">
-              <span class="dot three"></span>
-              <span class="gender">Prefer not to say</span>
+            <label>
+              <input type="radio" name="gender" value="other" {{ old('gender') == 'other' ? 'checked' : '' }}>
+              <span class="dot"></span> Prefer not to say
             </label>
           </div>
         </div>

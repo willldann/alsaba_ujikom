@@ -16,16 +16,18 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
+    padding: 15px 5%;
     background-color: #333;
     color: white;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .logo {
-    font-size: 26px;
-    font-weight: bold;
+    font-size: clamp(20px, 5vw, 26px);
+    font-weight: 600;
     color: white;
 }
 
@@ -33,22 +35,19 @@ header {
     color: #f8b400;
 }
 
-nav {
-    position: relative;
-}
-
+/* ========== Navigation Styles ========== */
 nav ul {
     list-style: none;
     display: flex;
-    gap: 25px;
+    gap: clamp(15px, 3vw, 25px);
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 18px;
+    font-size: clamp(14px, 2.5vw, 16px);
     position: relative;
-    transition: 0.3s ease;
+    transition: color 0.3s ease;
 }
 
 nav ul li a:hover,
@@ -56,7 +55,7 @@ nav ul li a.active {
     color: #f8b400;
 }
 
-/* Hover underline */
+/* Hover underline effect */
 nav ul li a::after {
     content: "";
     position: absolute;
@@ -65,12 +64,17 @@ nav ul li a::after {
     background: #f8b400;
     bottom: -5px;
     left: 0;
-    transition: 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 nav ul li a:hover::after,
 nav ul li a.active::after {
     width: 100%;
+}
+
+/* Logout form styling */
+#logout-form {
+    display: contents;
 }
 
 /* ========== Hamburger Menu ========== */
@@ -80,9 +84,14 @@ nav ul li a.active::after {
 
 .hamburger {
     display: none;
-    font-size: 28px;
+    font-size: clamp(24px, 6vw, 28px);
     color: white;
     cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+#menu-toggle:checked + .hamburger {
+    transform: rotate(90deg);
 }
 
 /* ========== Responsive Styles ========== */
@@ -93,24 +102,69 @@ nav ul li a.active::after {
 
     nav {
         width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #333;
+        transform: translateY(-100%);
+        transition: transform 0.3s ease-in-out;
+        visibility: hidden;
     }
 
     nav ul {
         flex-direction: column;
-        background-color: #333;
+        gap: 0;
         width: 100%;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        display: none;
     }
 
     nav ul li {
-        padding: 15px 30px;
+        padding: 15px 5%;
         border-bottom: 1px solid #444;
+        text-align: center;
     }
 
-    #menu-toggle:checked + .hamburger + nav ul {
-        display: flex;
-    }
+    nav ul li a {
+        display: block;
+        font-size: 16px;
+    }
+
+    /* Show nav when menu is toggled */
+    #menu-toggle:checked + .hamburger + nav {
+        transform: translateY(0);
+        visibility: visible;
+    }
+}
+
+/* ========== Extra Small Devices (Phones < 576px) ========== */
+@media (max-width: 576px) {
+    header {
+        padding: 10px 5%;
+    }
+
+    .logo {
+        font-size: 20px;
+    }
+
+    nav ul li {
+        padding: 12px 5%;
+    }
+
+    nav ul li a {
+        font-size: 14px;
+    }
+}
+
+/* ========== Large Devices (Desktops > 1200px) ========== */
+@media (min-width: 1200px) {
+    header {
+        padding: 20px 10%;
+    }
+
+    nav ul {
+        gap: 30px;
+    }
+
+    nav ul li a {
+        font-size: 18px;
+    }
 }

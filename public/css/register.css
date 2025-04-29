@@ -66,33 +66,25 @@ body {
   color: #333;
 }
 
-.category {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.category label {
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  font-size: 14px;
-  color: #333;
+.category input[type="radio"] {
+  display: none; /* Sembunyikan radio asli */
 }
 
 .dot {
-  height: 12px;
-  width: 12px;
+  height: 14px;
+  width: 14px;
   border-radius: 50%;
   background: #ccc;
-  margin-right: 6px;
+  display: inline-block;
+  margin-right: 8px;
+  border: 2px solid #ccc;
   transition: 0.3s;
 }
 
 input[type="radio"]:checked + .dot {
   background: #e6683c;
+  border-color: #e6683c;
 }
-
 /* Tombol Register */
 .button {
   text-align: center;
