@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('category')->nullable(); // Kategori produk
             $table->decimal('price', 12, 0); // Harga produk (tanpa desimal, cocok untuk Rupiah)
             $table->string('image')->nullable(); // Gambar produk
+            $table->decimal('weight', 8, 2)->default(0);  // 8 digits in total, 2 decimal places
             $table->timestamps(); // Waktu pembuatan dan pembaruan
         });
     }

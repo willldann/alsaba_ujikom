@@ -42,11 +42,13 @@
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
+/* Styling for images to prevent them from becoming too large */
 .product-item img {
-  max-width: 100%;
-  height: auto;
+  max-width: 100%;   /* Pastikan gambar tidak melebihi lebar elemen */
+  height: auto;      /* Jaga proporsi gambar */
   border-radius: 10px;
-  object-fit: cover;
+  object-fit: contain;  /* Pastikan gambar tidak terdistorsi dan tetap proporsional */
+  max-height: 300px;  /* Batasi tinggi gambar, terutama di perangkat kecil */
 }
 
 .product-item h3 {
@@ -163,7 +165,7 @@
   }
 
   .product-item img {
-    max-height: 200px;
+    max-height: 150px;  /* Mengurangi tinggi gambar pada layar kecil */
   }
 
   .product-item h3 {

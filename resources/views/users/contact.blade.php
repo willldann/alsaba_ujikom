@@ -65,8 +65,6 @@
                     <div class="social-links">
                         <a href="#" class="facebook"><i class="fa-brands fa-facebook" style="color: #ffffff;"></i>
                         <a href="#" class="instagram"><i class="fa-brands fa-instagram" style="color: #ffffff;"></i>
-                        <a href="#" class="twitter"><i class="fa-brands fa-twitter" style="color: #ffffff;"></i></a>
-                        <a href="#" class="youtube"><i class="fa-brands fa-youtube" style="color: #ffffff;"></i></a>
                         <a href="#" class="whatsapp"><i class="fa-brands fa-whatsapp" style="color: #ffffff;" ></i></a>
                     </div>
                 </div>

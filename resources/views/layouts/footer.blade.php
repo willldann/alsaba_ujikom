@@ -1,26 +1,159 @@
-<link rel="stylesheet" href="/css/footer.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DendengShop Footer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<footer>
-    <div class="footer-container">
-        <div class="footer-section">
-            <h2 class="logo">DendengShop</h2>
-            <p>Your tagline here</p>
-            <p><strong>Address:</strong> 562 Wellington Road, San Francisco</p>
-            <p><strong>Phone:</strong> +01 2222 3665, (+91) 01 2345 6789</p>
-            <p><strong>Hours:</strong> 10:00 - 18:00, Mon - Sat</p>
+        /* Footer Styles */
+        footer {
+            background: #f8f9fa;
+            font-family: 'Roboto', sans-serif;
+            padding: 30px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        /* Logo and Tagline */
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-logo h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .footer-logo h2 span {
+            color: #ff4d4f; /* Accent color for "D" */
+        }
+
+        .footer-tagline p {
+            font-size: 1rem;
+            color: #555;
+            max-width: 400px;
+            text-align: left;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            color: #555;
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #ff4d4f;
+        }
+
+        /* Copyright */
+        .footer-bottom {
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #777;
+            text-align: left;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Wave Background */
+        .wave {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23e2e6ea' fill-opacity='1' d='M0,224L48,213.3C96,203,192,181,288,181.3C384,181,480,203,576,224C672,245,768,267,864,245.3C960,224,1056,160,1152,149.3C1248,139,1344,181,1392,202.7L1440,224L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E") repeat-x;
+            background-size: cover;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .footer-container {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .footer-tagline p {
+                text-align: left;
+                max-width: 100%;
+            }
+
+            .social-icons {
+                justify-content: flex-start;
+            }
+
+            .footer-bottom {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .footer-logo h2 {
+                font-size: 1.3rem;
+            }
+
+            .footer-tagline p {
+                font-size: 0.9rem;
+            }
+
+            .social-icons a {
+                font-size: 1rem;
+            }
+
+            .footer-bottom {
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-logo">
+                <h2><span>Al-</span>Saba</h2>
+            </div>
+            <div class="footer-tagline">
+                <p>Savor the authentic taste of premium dendeng, crafted with care.</p>
+            </div>
+            <div class="social-icons">
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            </div>
         </div>
-        
-        <div class="footer-section">
-            <h3>Information</h3>
-            <a href="about">About Us</a>
-        </div>
-    </div>
-
-    <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-    </div>
-
-    <p class="footer-bottom">&copy; 2025 DendengShop | All Rights Reserved</p>
-</footer>
+        <p class="footer-bottom">© 2025 All Rights Reserved</p>
+        <div class="wave"></div>
+    </footer>
+</body>
+</html>

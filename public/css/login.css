@@ -34,8 +34,11 @@ body {
 
 /* Logo */
 .logo img {
-    width: 80px;
+    width: 180px;
+    height: 180px; /* Pastikan tinggi dan lebar sama untuk membuat bentuk bulat */
     margin-bottom: 10px;
+    border-radius: 50%; /* Membuat logo menjadi bulat */
+    object-fit: cover; /* Menjaga proporsi gambar agar tidak terdistorsi */
 }
 
 /* Judul */

@@ -16,7 +16,12 @@ class CartController extends Controller
 
         $cartItems = Cart::with('product')
             ->where('user_id', $user->id)
+            ->where('is_flag', false)
             ->get();
+
+        if ($cartItems->isEmpty()) {
+            return redirect()->route('users.product')->with('error', 'Keranjang Anda kosong.');
+        }
 
         return view('users.cart', compact('cartItems'));
     }
@@ -46,8 +51,9 @@ class CartController extends Controller
 
         // Cek apakah produk sudah ada di keranjang
         $cartItem = Cart::where('user_id', $user->id)
-                        ->where('product_id', $id)
-                        ->first();
+            ->where('product_id', $id)
+            ->where('is_flag', false)
+            ->first();
 
         if ($cartItem) {
             // Jika produk sudah ada, update kuantitas dan hitung ulang total berat
@@ -73,6 +79,7 @@ class CartController extends Controller
         $user = Auth::user();
         Cart::where('user_id', $user->id)
             ->where('product_id', $id)
+            ->where('is_flag', false)
             ->delete();
 
         return redirect()->route('users.cart')->with('success', 'Produk dihapus dari keranjang!');

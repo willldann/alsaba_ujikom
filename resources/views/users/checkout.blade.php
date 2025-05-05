@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +8,6 @@
     <script defer src="/js/checkout.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
     <div class="checkout-container">
         <!-- Kiri: Ringkasan Pesanan -->
@@ -25,12 +23,10 @@
                     @php
                         $product = $item->product;
                         $quantity = $item->quantity;
-
-                        $totalWeight = $quantity * 50; // 50 gram per produk
+                        $totalWeight = $quantity * 50;
                         $formattedWeight = $totalWeight >= 1000
                             ? number_format($totalWeight / 1000, 2, ',', '.') . ' kg'
                             : $totalWeight . ' gram';
-
                         $subtotal = $product->price * $quantity;
                         $total += $subtotal;
                         $totalWeightAll += $totalWeight;
@@ -73,43 +69,19 @@
 
                 <div class="form-group">
                     <input type="text" name="name" placeholder="Nama Lengkap" value="{{ old('name', $user->name ?? '') }}" required>
-                    @error('name') <span class="text-danger">{{ $message }}</span> @enderror
                 </div>
                 <div class="form-group">
-                    <input type="text" name="address" placeholder="Alamat Lengkap" value="{{ old('address', $user->address ?? '') }}" required>
-                    @error('address') <span class="text-danger">{{ $message }}</span> @enderror
+                    <input type="text" name="alamat" placeholder="Alamat Lengkap" value="{{ old('alamat', $latestAddress->alamat ?? '') }}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="city" placeholder="Kota" value="{{ old('city', $user->city ?? '') }}" required>
-                    @error('city') <span class="text-danger">{{ $message }}</span> @enderror
+                    <input type="text" name="kota" placeholder="Kota" value="{{ old('kota', $latestAddress->kota ?? '') }}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="postal_code" placeholder="Kode Pos" value="{{ old('postal_code', $user->postal_code ?? '') }}" required>
-                    @error('postal_code') <span class="text-danger">{{ $message }}</span> @enderror
+                    <input type="text" name="kode_pos" placeholder="Kode Pos" value="{{ old('kode_pos', $latestAddress->kode_pos ?? '') }}" required>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="phone" placeholder="Nomor HP" value="{{ old('phone', $user->phone ?? '') }}" required>
-                    @error('phone') <span class="text-danger">{{ $message }}</span> @enderror
+                    <input type="text" name="nomor_hp" placeholder="Nomor HP" value="{{ old('nomor_hp', $latestAddress->nomor_hp ?? '') }}" required>
                 </div>
-
-                <h3><i class="fa-solid fa-credit-card"></i> Metode Pembayaran</h3>
-                <div class="form-group">
-                    <select name="payment_method" required>
-                        <option value="">-- Pilih Metode --</option>
-                        <option value="bca">BCA</option>
-                        <option value="bni">BNI</option>
-                        <option value="bri">BRI</option>
-                        <option value="mandiri">Mandiri</option>
-                        <option value="gopay">GoPay</option>
-                        <option value="dana">DANA</option>
-                        <option value="ovo">OVO</option>
-                        <option value="shopeepay">ShopeePay</option>
-                        <option value="credit-card">Kartu Kredit</option>
-                        <option value="paypal">PayPal</option>
-                    </select>
-                    @error('payment_method') <span class="text-danger">{{ $message }}</span> @enderror
-                </div>
-
                 <button type="submit" class="submit-button">
                     <i class="fa-solid fa-check"></i> Pesan Sekarang
                 </button>
@@ -117,5 +89,4 @@
         </div>
     </div>
 </body>
-
 </html>

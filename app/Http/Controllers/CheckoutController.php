@@ -3,76 +3,77 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use App\Models\Order;
-use App\Models\OrderItem;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class CheckoutController extends Controller
 {
-    // Menampilkan halaman checkout
     public function index()
     {
         $user = Auth::user();
+        $cartItems = Cart::with('product')
+            ->where('user_id', $user->id)
+            ->where('is_flag', false)
+            ->get();
 
-        // Ambil item di keranjang user dengan data produk
-        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
-
+        // Jika cart kosong, redirect ke halaman utama dengan pesan error
         if ($cartItems->isEmpty()) {
-            return redirect()->route('home')->with('error', 'Keranjang Anda kosong.');
+            return redirect()->route('users.product')->with('error', 'Keranjang Anda kosong.');
         }
 
         $total = 0;
-        $totalWeight = 0; // Inisialisasi variabel untuk total berat
+        $totalWeight = 0;
 
+        // Menghitung total harga dan total berat
         foreach ($cartItems as $item) {
             $total += $item->product->price * $item->quantity;
-            $totalWeight += $item->product->weight * $item->quantity; // Tambahkan perhitungan berat
+            $totalWeight += $item->product->weight * $item->quantity;
         }
 
-        return view('users.checkout', compact('user', 'cartItems', 'total', 'totalWeight'));
+        // Mengambil alamat pengiriman terakhir yang disimpan oleh user
+        $latestAddress = Address::where('user_id', $user->id)->latest()->first();
+
+        return view('users.checkout', compact('user', 'cartItems', 'total', 'totalWeight', 'latestAddress'));
     }
 
-    // Proses pemesanan
     public function placeOrder(Request $request)
     {
+        // Validasi data alamat pengiriman
         $request->validate([
-            'address' => 'required|string|max:255',
-            'phone' => 'required|string|max:20',
-            'payment_method' => 'required|string|in:credit_card,paypal,bca,mandiri',
+            'alamat' => 'required|string',
+            'kota' => 'required|string',
+            'kode_pos' => 'required|string',
+            'nomor_hp' => 'required|string',
         ]);
 
-        $user = Auth::user();
-        $cartItems = Cart::with('product')->where('user_id', $user->id)->get();
+        $userId = Auth::id();
 
-        if ($cartItems->isEmpty()) {
-            return redirect()->route('checkout.index')->with('error', 'Keranjang Anda kosong.');
-        }
+        Cart::where('user_id', $userId)
+            ->where('is_flag', false)
+            ->update(['is_flag' => true]);
 
-        // Buat order baru
-        $order = Order::create([
-            'user_id' => $user->id,
-            'alamat' => $request->address,
-            'telepon' => $request->phone,
-            'payment_method' => $request->payment_method,
-            'status' => 'pending',
+        // Simpan alamat pengiriman
+        Address::create([
+            'user_id' => Auth::id(),
+            'alamat' => $request->alamat,
+            'kota' => $request->kota,
+            'kode_pos' => $request->kode_pos,
+            'nomor_hp' => $request->nomor_hp,
         ]);
 
-        // Simpan detail produk ke OrderItem
-        foreach ($cartItems as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'product_name' => $item->product->name,
-                'quantity' => $item->quantity,
-                'price' => $item->product->price,
-                'total' => $item->product->price * $item->quantity,
-                'weight' => $item->product->weight, // Tambahkan ini
-            ]);
-        }
+        // Siapkan pesan untuk dikirim ke WhatsApp Admin
+        $pesan = urlencode(
+            "Halo Admin, Saya ingin memesan dengan detail berikut:" .
+                "Alamat: {$request->alamat}" .
+                "Kota: {$request->kota}" .
+                "Kode Pos: {$request->kode_pos}" .
+                "No HP: {$request->nomor_hp}"
+        );
 
-        // Hapus cart setelah checkout
-        Cart::where('user_id', $user->id)->delete();
+        $nomorAdmin = '6282220481641';
 
-        return redirect()->route('home')->with('success', 'Pesanan berhasil dibuat!');
+        // Redirect ke WhatsApp
+        return redirect("https://wa.me/{$nomorAdmin}?text={$pesan}");
     }
 }

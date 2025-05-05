@@ -19,7 +19,7 @@
     <section class="hero">
         <div class="hero-overlay"></div>
         <div class="hero-text">
-            <h4>Selamat Datang di Dendeng Shop</h4>
+            <h4>Selamat Datang di Al-saba</h4>
             <h1>Promo Spesial Dendeng Premium</h1>
             <h2>Diskon Hingga <span>50%</span>!</h2>
             <p>Manfaatkan kesempatan ini hanya di bulan ini!</p>

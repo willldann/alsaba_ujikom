@@ -14,6 +14,7 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained();
             $table->integer('quantity');
             $table->integer('weight'); // Menyimpan total berat dalam gram
+            $table->boolean('is_flag')->default(false); // false masih di cart - true sudah checkout
             $table->timestamps();
         });
     }

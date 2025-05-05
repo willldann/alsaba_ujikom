@@ -6,49 +6,50 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7fa;
-    color: #1f2937;
-    line-height: 1.6;
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    line-height: 1.7;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
 }
 
 /* Layout Container */
 .checkout-container {
     display: flex;
     flex-wrap: wrap;
-    max-width: 1200px;
-    margin: 50px auto;
-    gap: 40px;
-    padding: 0 20px;
+    max-width: 1280px;
+    margin: 60px auto;
+    gap: 32px;
+    padding: 0 24px;
 }
 
-/* Panel Styles (Left & Right) */
+/* Panel Styles */
 .checkout-left,
 .checkout-right {
     flex: 1;
-    min-width: 320px;
-    background-color: #ffffff;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    min-width: 340px;
+    background: linear-gradient(145deg, #ffffff, #f8fafc);
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .checkout-left:hover,
 .checkout-right:hover {
-    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.09);
-    transform: translateY(-5px);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.12);
+    transform: translateY(-8px);
 }
 
 /* Headings */
 h2, h3 {
-    margin: 0 0 25px;
-    color: #111827;
-    font-size: 1.8rem;
-    font-weight: 700;
+    margin: 0 0 32px;
+    color: #0f172a;
+    font-size: 2rem;
+    font-weight: 600;
     position: relative;
-    padding-bottom: 12px;
+    padding-bottom: 16px;
 }
 
 h2::after,
@@ -57,143 +58,169 @@ h3::after {
     position: absolute;
     bottom: 0;
     left: 0;
-    width: 60px;
-    height: 3px;
-    background: linear-gradient(to right, #f39c12, #e67e22);
+    width: 72px;
+    height: 4px;
+    background: linear-gradient(to right, #6366f1, #a855f7);
+    border-radius: 2px;
 }
 
 /* Cart Item */
 .cart-item {
     display: flex;
     align-items: flex-start;
-    gap: 20px;
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e5e7eb;
-    transition: background-color 0.3s ease;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding: 24px;
+    border-radius: 16px;
+    background: #ffffff;
+    transition: all 0.3s ease;
 }
 
 .cart-item:hover {
-    background-color: #f9fafb;
-    border-radius: 12px;
-    padding: 20px;
+    background: #f8fafc;
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
 .cart-item img {
-    width: 100px;
-    height: 100px;
+    width: 120px;
+    height: 120px;
     object-fit: cover;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+    border: 1px solid #e2e8f0;
     flex-shrink: 0;
-    transition: transform 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .cart-item img:hover {
-    transform: scale(1.05);
+    transform: scale(1.08);
+    border-color: #a855f7;
 }
 
 .cart-details {
     flex: 1;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 12px;
     overflow-wrap: break-word;
 }
 
 .cart-details h4 {
-    font-size: 1.2rem;
-    color: #2c3e50;
-    margin-bottom: 10px;
+    font-size: 1.25rem;
+    color: #1e293b;
+    font-weight: 500;
 }
 
 .cart-details p {
-    font-size: 1rem;
-    color: #6b7280;
+    font-size: 0.95rem;
+    color: #64748b;
 }
 
 /* Cart Total */
 .cart-total {
-    margin-top: 30px;
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: #2c3e50;
+    margin-top: 40px;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #1e293b;
     text-align: right;
-    padding: 15px;
-    background: #f3f4f6;
-    border-radius: 10px;
+    padding: 20px;
+    background: linear-gradient(145deg, #f8fafc, #e2e8f0);
+    border-radius: 12px;
 }
 
 /* Form Styles */
 .form-group {
-    margin-bottom: 25px;
+    margin-bottom: 28px;
+    position: relative;
 }
 
 .form-group label {
     display: block;
-    font-size: 1rem;
+    font-size: 0.95rem;
     font-weight: 500;
-    color: #374151;
-    margin-bottom: 8px;
+    color: #1e293b;
+    margin-bottom: 10px;
 }
 
 input,
 select {
     width: 100%;
-    padding: 14px 20px;
+    padding: 16px 20px;
     font-size: 1rem;
-    background-color: #f9fafb;
-    border: 1px solid #d1d5db;
-    border-radius: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 input:focus,
 select:focus {
     outline: none;
+    border-color: #6366f1;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
     background-color: #ffffff;
-    border-color: #e67e22;
-    box-shadow: 0 0 8px rgba(230, 126, 34, 0.2);
 }
 
 /* Buttons */
 .submit-button {
+    position: relative;
     width: 100%;
-    padding: 16px;
+    padding: 18px;
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 600;
     color: #ffffff;
     background: linear-gradient(to right, #f39c12, #e67e22);
     border: none;
     border-radius: 12px;
     cursor: pointer;
+    overflow: hidden;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.submit-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s ease, height 0.6s ease;
+}
+
+.submit-button:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 .submit-button:hover {
     background: linear-gradient(to right, #e67e22, #d35400);
-    transform: translateY(-2px);
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(230, 126, 34, 0.3);
 }
 
 .back-button {
     display: inline-flex;
     align-items: center;
-    margin-bottom: 25px;
-    padding: 10px 20px;
+    gap: 8px;
+    margin-bottom: 32px;
+    padding: 12px 24px;
     font-size: 1rem;
     font-weight: 500;
-    color: #374151;
-    background-color: #f3f4f6;
-    border-radius: 10px;
+    color: #1e293b;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
 .back-button:hover {
-    background-color: #e5e7eb;
-    color: #2c3e50;
+    background: #e2e8f0;
+    border-color: #a855f7;
+    color: #0f172a;
     transform: translateY(-2px);
 }
 
@@ -201,19 +228,53 @@ select:focus {
 @media (max-width: 768px) {
     .checkout-container {
         flex-direction: column;
-        margin: 30px auto;
-        gap: 30px;
+        margin: 40px auto;
+        gap: 24px;
     }
 
     .checkout-left,
     .checkout-right {
-        padding: 25px;
+        padding: 32px;
     }
 
     .cart-item {
-        flex-direction: row;
-        align-items: center;
-        padding: 15px;
+        padding: 20px;
+        gap: 20px;
+    }
+
+    .cart-item img {
+        width: 100px;
+        height: 100px;
+    }
+
+    h2, h3 {
+        font-size: 1.75rem;
+    }
+
+    .cart-total {
+        font-size: 1.15rem;
+    }
+
+    .submit-button {
+        font-size: 1rem;
+        padding: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .checkout-container {
+        padding: 0 16px;
+    }
+
+    .checkout-left,
+    .checkout-right {
+        padding: 24px;
+        min-width: 100%;
+    }
+
+    .cart-item {
+        gap: 16px;
+        padding: 16px;
     }
 
     .cart-item img {
@@ -225,57 +286,23 @@ select:focus {
         font-size: 1.5rem;
     }
 
-    .cart-total {
-        font-size: 1.1rem;
-    }
-
-    .submit-button {
-        font-size: 1rem;
-        padding: 14px;
-    }
-}
-
-@media (max-width: 480px) {
-    .checkout-container {
-        padding: 0 15px;
-    }
-
-    .checkout-left,
-    .checkout-right {
-        padding: 20px;
-    }
-
-    .cart-item {
-        gap: 15px;
-        padding: 10px;
-    }
-
-    .cart-item img {
-        width: 60px;
-        height: 60px;
-    }
-
-    h2, h3 {
-        font-size: 1.3rem;
-    }
-
     .form-group label {
         font-size: 0.9rem;
     }
 
     input,
     select {
-        padding: 12px 15px;
-        font-size: 0.9rem;
+        padding: 14px 16px;
+        font-size: 0.95rem;
     }
 
     .submit-button {
-        font-size: 0.9rem;
-        padding: 12px;
+        font-size: 0.95rem;
+        padding: 14px;
     }
 
     .back-button {
         font-size: 0.9rem;
-        padding: 8px 15px;
+        padding: 10px 16px;
     }
 }

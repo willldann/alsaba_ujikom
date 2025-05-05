@@ -1,11 +1,15 @@
-/* contact.css */
-
-body {
-    font-family: 'Poppins', sans-serif;
+/* Reset Default */
+* {
     margin: 0;
     padding: 0;
-    color: #333;
+    box-sizing: border-box;
+}
+
+/* Base Styles */
+body {
+    font-family: 'Poppins', sans-serif;
     background: #f9f9f9;
+    color: #333;
     line-height: 1.6;
 }
 
@@ -23,7 +27,6 @@ body {
 .contact-header h2 {
     font-size: 34px;
     font-weight: 700;
-    color: #333;
     margin-bottom: 12px;
 }
 
@@ -33,13 +36,14 @@ body {
     font-weight: 400;
 }
 
+/* Layout */
 .contact-content {
     display: flex;
     justify-content: space-between;
     gap: 40px;
 }
 
-.contact-form {
+.contact-form, .contact-info {
     flex: 1;
     background: #fff;
     padding: 30px;
@@ -47,10 +51,10 @@ body {
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
+/* Contact Form */
 .contact-form h3 {
     font-size: 22px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 20px;
 }
 
@@ -96,31 +100,27 @@ body {
 .contact-form button {
     width: 100%;
     padding: 14px;
-    background: #f4c430;
-    color: #333;
+    background: linear-gradient(to right, #f39c12, #e67e22);
+    color: #fff;
     border: none;
     border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .contact-form button:hover {
-    background: #e0b028;
+    background: linear-gradient(to right, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-.contact-info {
-    flex: 1;
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-}
-
+/* Contact Info */
 .contact-info h3 {
     font-size: 22px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 20px;
     text-align: center;
 }
@@ -139,6 +139,7 @@ body {
     font-size: 18px;
 }
 
+/* Map */
 .map-container {
     margin: 20px 0;
 }
@@ -146,27 +147,23 @@ body {
 .map-container h4 {
     font-size: 18px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 15px;
     text-align: center;
 }
 
 .map-container iframe {
+    width: 100%;
+    height: 300px;
+    border: none;
     border-radius: 8px;
 }
 
-.contact-info h4 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #333;
-    margin: 15px 0;
-    text-align: center;
-}
-
+/* Social Links */
 .social-links {
     display: flex;
     justify-content: center;
     gap: 15px;
+    margin-top: 20px;
 }
 
 .social-links a {
@@ -176,26 +173,28 @@ body {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    background: #ff9900; /* Vibrant orange background */
-    color: #fff !important; /* White icons */
+    background: linear-gradient(to right, #f39c12, #e67e22);
+    color: #fff !important;
     font-size: 22px;
     text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
 .social-links a:hover {
+    background: linear-gradient(to right, #e67e22, #d35400);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Ensure no default colors interfere */
+/* Override specific icons */
 .social-links .facebook,
-.social-links .twitter,
 .social-links .instagram,
-.social-links .youtube,
 .social-links .whatsapp {
-    color: #ffffff !important; /* Override any default icon colors */
-    background: ; /* Consistent orange background */
+    color: #ffffff !important;
 }
 
-/* Responsive Adjustments */
+/* Responsive Design */
 @media (max-width: 768px) {
     .contact-content {
         flex-direction: column;
@@ -242,6 +241,6 @@ body {
     .contact-info h3,
     .map-container h4,
     .contact-info h4 {
-        font-size: 20px;
-    }
+        font-size: 20px;
+    }
 }

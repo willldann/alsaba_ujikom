@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use App\Models\Order;
 use App\Models\Cart; // Tambahkan model Cart
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
@@ -20,17 +19,17 @@ class DashboardController extends Controller
         }
 
         // Mengambil data statistik
-        $newOrders = Order::where('status', 'new')->count(); // Hitung jumlah pesanan baru
         $visitors = User::count(); // Hitung jumlah pengunjung (asumsi ada entitas User untuk pengunjung)
-        $totalSales = Order::sum('total_amount'); // Hitung total penjualan
 
-        // Mengambil 5 pesanan terbaru
-        $recentOrders = Order::latest()->take(5)->get();
+        $recentOrders = Cart::with('user', 'product')  // bagian orders
+        ->where('is_flag', true)
+        ->latest()->get();
 
-        // Mengambil 5 cart terbaru
-        $recentCarts = Cart::with('user', 'product')->latest()->take(5)->get(); // ambil 5 cart terbaru
+        $recentCarts = Cart::with('user', 'product')
+        ->where('is_flag', false)
+        ->latest()->get();
 
         // Kirim data ke view
-        return view('admin.index', compact('newOrders', 'visitors', 'totalSales', 'recentOrders', 'recentCarts'));
+        return view('admin.index', compact('visitors', 'recentCarts','recentOrders'));
     }
 }

@@ -32,7 +32,10 @@
 
             <!-- Tombol beli dengan ikon keranjang -->
             <button type="submit" class="buy-btn">
-              <i class="fas fa-shopping-cart"></i> Beli Sekarang
+              <i class="fas fa-shopping-cart"> </i>
+              <span style="margin-left: 10px;">
+                Beli Sekarang
+              </span>
             </button>
           </div>
         </form>

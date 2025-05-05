@@ -60,25 +60,15 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
-            <i class='bx bx-menu'></i>
-            <a href="#" class="nav-link">Categories</a>
-            <form action="#"></form>
         </nav>
         <!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>
-            <div class="head-title">
-                <div class="left">
-                    <h1>Dashboard</h1>
-                </div>
-            </div>
-
             <ul class="box-info">
                 <li>
                     <i class='bx bxs-calendar-check'></i>
                     <span class="text">
-                        <h3>{{ $newOrders }}</h3>
                         <p>New Order</p>
                     </span>
                 </li>
@@ -92,7 +82,6 @@
                 <li>
                     <i class='bx bxs-dollar-circle'></i>
                     <span class="text">
-                        <h3>Rp{{ number_format($totalSales, 0, ',', '.') }}</h3>
                         <p>Total Penjualan</p>
                     </span>
                 </li>                
@@ -107,19 +96,20 @@
                         <thead>
                             <tr>
                                 <th>User</th>
-                                <th>Date Order</th>
-                                <th>Status</th>
+                                <th>product</th>
+                                <th>quantity</th>
+                                <th>weight</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($recentOrders as $order)
+                            @foreach ($recentOrders as $cart)
                                 <tr>
                                     <td>
-                                        <img src="img/people.png" alt="user">
-                                        <p>{{ $order->user->name }}</p>
+                                        <p>{{ $cart->user->name }}</p>
                                     </td>
-                                    <td>{{ $order->created_at->format('d-m-Y') }}</td>
-                                    <td><span class="status {{ $order->status }}">{{ ucfirst($order->status) }}</span></td>
+                                    <td>{{ $cart->product->name }}</td>
+                                    <td>{{ $cart->quantity }}</td>
+                                    <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram</td>
                                 </tr>
                             @endforeach
                         </tbody>

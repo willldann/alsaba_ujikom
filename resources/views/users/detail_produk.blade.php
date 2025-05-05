@@ -9,52 +9,54 @@
 </head>
 
 <body>
-    
+
     @include('layouts.navbar')
-    
+
     <section class="product-detail">
         <div class="product-gallery">
             <img id="main-image" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
-            <div class="thumbnail-container">
-                @foreach ($product->thumbnails as $thumb)
-                    <img class="thumbnail" onclick="changeImage(this)" src="{{ asset('storage/' . $thumb) }}" alt="{{ $product->name }}">
-                @endforeach
-            </div>
         </div>
 
         <div class="product-info">
             <h1>{{ $product->name }}</h1>
             <p class="price">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-    
-            <!-- Form untuk menambahkan produk ke keranjang -->
+
             <form action="{{ route('cart.add', $product->id) }}" method="POST">
                 @csrf
-                
-                <!-- Berat produk otomatis -->
+
                 <label for="weight">Berat Produk:</label>
                 <input type="text" name="weight" id="weight" value="50 gram" readonly required>
 
                 <label for="quantity">Jumlah:</label>
                 <input type="number" name="quantity" id="quantity" value="1" min="1" required>
-    
+
                 <button type="submit" class="buy-btn">Beli Sekarang</button>
             </form>
 
-            <h2>Deskripsi Produk</h2>
-            <p>{{ $product->description }}</p>
+            <!-- Dropdown Deskripsi Produk -->
+            <details class="product-description">
+                <summary><h2>Deskripsi Produk</h2></summary>
+                <p>
+                    Dendeng sapi premium dengan cita rasa khas Nusantara. Dibuat dari daging sapi pilihan, 
+                    diproses secara higienis dan dikemas rapi untuk menjaga kesegaran serta kualitas rasa.
+                    Cocok dinikmati sebagai lauk pendamping nasi atau camilan saat santai.
+                </p>
+                <p>
+                    Tersedia dalam ukuran 50 gram per bungkus. Tidak mengandung bahan pengawet dan 
+                    tahan hingga 6 bulan dalam penyimpanan suhu ruang.
+                </p>
+            </details>
         </div>
     </section>
-    
+
     <script>
-        // Fungsi untuk mengganti gambar utama ketika thumbnail diklik
         function changeImage(element) {
             document.getElementById('main-image').src = element.src;
         }
 
-        // Update berat berdasarkan jumlah
         document.getElementById('quantity').addEventListener('input', function () {
             const quantity = parseInt(this.value);
-            const weightPerItem = 50; // gram per produk
+            const weightPerItem = 50;
             const totalWeight = quantity * weightPerItem;
 
             let displayWeight;
@@ -68,6 +70,6 @@
             document.getElementById('weight').value = displayWeight;
         });
     </script>
-    
+
 </body>
 </html>

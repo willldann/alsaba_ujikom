@@ -1,7 +1,7 @@
 <link rel="stylesheet" href="/css/navbar.css">
 
 <header>
-    <div class="logo">Dendeng<span>Shop</span></div>
+    <div class="logo">Al-<span>Saba</span></div>
 
     <!-- Checkbox untuk toggle menu hamburger -->
     <input type="checkbox" id="menu-toggle">

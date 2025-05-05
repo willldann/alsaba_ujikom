@@ -207,6 +207,13 @@ body {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+.our-products img {
+    max-width: 100%;   /* Pastikan gambar tidak melebihi lebar elemen */
+    height: auto;      /* Jaga proporsi gambar */
+    border-radius: 10px;
+    object-fit: contain;  /* Pastikan gambar tidak terdistorsi dan tetap proporsional */
+    max-height: 300px;  /* Batasi tinggi gambar, terutama di perangkat kecil */
+  }
 
 .buy-btn:hover {
     background: #e64a19;

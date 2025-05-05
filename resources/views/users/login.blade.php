@@ -9,7 +9,7 @@
 <body>
     <div class="login-container">
         <div class="logo">
-            <img src="/assets/logo.png" alt="Dendeng Shop">
+            <img src="/assets/logo.jpeg" alt="Dendeng Shop">
         </div>
         <h2>Masuk ke Akun Anda</h2>
         <form id="loginForm" method="POST" action="{{ route('login') }}">

@@ -26,6 +26,8 @@ class UserController extends Controller
     // Create a new user
     public function store(Request $request)
     {
+        
+ 
         // Validation for user input
         $validated = $request->validate([
             'name' => 'required|string|max:255',

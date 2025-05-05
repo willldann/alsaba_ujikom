@@ -33,8 +33,7 @@
     Route::view('/about', 'users.about')->name('about');
     Route::view('/contact', 'users.contact')->name('contact');
 
-    Route::get('/product', [ProductController::class, 'index'])->name('users.product');
-    Route::get('/produk/{id}', [ProductController::class, 'show'])->name('users.detail_produk');
+
 
     /*
     |--------------------------------------------------------------------------
@@ -42,6 +41,10 @@
     |--------------------------------------------------------------------------
     */
     Route::middleware(['auth'])->group(function () {
+
+        Route::get('/product', [ProductController::class, 'index'])->name('users.product');
+        Route::get('/produk/{id}', [ProductController::class, 'show'])->name('users.detail_produk');
+        
         Route::view('/dashboard', 'users.dashboard')->name('dashboard');
 
         // Cart & Checkout
@@ -126,5 +129,8 @@
 
         // Route to store a new user (usually comes from a form)
         Route::post('/users', [UserController::class, 'store'])->name('users.store');
+
+        // checkout
+        Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 
     });

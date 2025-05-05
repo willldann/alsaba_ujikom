@@ -27,11 +27,16 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    use HasFactory, Notifiable;
-
-    public function orders()
+     // Relasi ke Address (jika ingin dapat alamat terbaru)
+    public function addresses()
     {
-        return $this->hasMany(Order::class);
+        return $this->hasMany(Address::class);
+    }
+
+    // Jika Anda ingin ambil alamat terakhir
+    public function latestAddress()
+    {
+        return $this->hasOne(Address::class)->latestOfMany();
     }
 }
 
