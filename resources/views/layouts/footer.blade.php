@@ -145,11 +145,13 @@
                 <h2><span>Al-</span>Saba</h2>
             </div>
             <div class="footer-tagline">
-                <p>Savor the authentic taste of premium dendeng, crafted with care.</p>
+                <p>Cita Rasa Tradisi, Sentuhan Modern.
+                    Dendeng premium untuk Anda yang menghargai kualitas.</p>
             </div>
             <div class="social-icons">
                 <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                 <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
             </div>
         </div>
         <p class="footer-bottom">© 2025 All Rights Reserved</p>

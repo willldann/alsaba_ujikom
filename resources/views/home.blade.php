@@ -51,7 +51,7 @@
       <div class="menu-item">
         <img src="/assets/dendeng-pedas.jpg" alt="Dendeng Ayam Pedas">
         <h3>Dendeng Ayam Pedas</h3>
-        <p>Pedas menggigit untuk pecinta tantangan. Mulai dari Rp55.000</p>
+        <p>Pedas menggigit untuk pecinta tantangan. Mulai dari Rp50.000</p>
         <a href="{{ route('users.product') }}" class="btn">Beli Sekarang</a>
       </div>
     </div>

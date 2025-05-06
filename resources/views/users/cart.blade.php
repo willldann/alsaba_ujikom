@@ -88,7 +88,6 @@
             @endphp
 
             <p><strong>Total Berat: </strong>{{ $formattedTotalWeight }}</p>
-            <p>🚚 Pengiriman: <span class="free">Gratis</span></p>
 
             <button class="checkout-button" onclick="window.location.href='{{ route('checkout.index') }}'">
                 <i class="fa-solid fa-credit-card"></i> Checkout

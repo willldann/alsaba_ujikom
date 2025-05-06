@@ -1,20 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-    <!-- My CSS -->
     <link rel="stylesheet" href="/admin/style.css">
-
     <title>AdminHub</title>
 </head>
-
 <body>
-
     <!-- SIDEBAR -->
     <section id="sidebar">
         <a href="#" class="brand">
@@ -23,7 +16,7 @@
         </a>
         <ul class="side-menu top">
             <li class="active">
-                <a href="{{ route('dashboard') }}">
+                <a href="{{ route('dashboard') }}" aria-current="page">
                     <i class='bx bxs-home'></i>
                     <span class="text">Home</span>
                 </a>
@@ -41,7 +34,6 @@
                 </a>
             </li>            
         </ul>
-
         <ul class="side-menu">
             <li>
                 <form method="POST" action="{{ route('logout') }}">
@@ -60,32 +52,17 @@
     <section id="content">
         <!-- NAVBAR -->
         <nav>
+            <i class='bx bx-menu' aria-label="Toggle Sidebar"></i>
         </nav>
         <!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>
-            <ul class="box-info">
-                <li>
-                    <i class='bx bxs-calendar-check'></i>
-                    <span class="text">
-                        <p>New Order</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-group'></i>
-                    <span class="text">
-                        <h3>{{ $visitors }}</h3>
-                        <p>Visitors</p>
-                    </span>
-                </li>
-                <li>
-                    <i class='bx bxs-dollar-circle'></i>
-                    <span class="text">
-                        <p>Total Penjualan</p>
-                    </span>
-                </li>                
-            </ul>
+            <div class="head-title">
+                <div class="left">
+                    <h1>Dashboard</h1>
+                </div>
+            </div>
 
             <div class="table-data">
                 <div class="order">
@@ -96,14 +73,14 @@
                         <thead>
                             <tr>
                                 <th>User</th>
-                                <th>product</th>
-                                <th>quantity</th>
-                                <th>weight</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Weight</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($recentOrders as $cart)
-                                <tr>
+                            @foreach ($recentOrders as $index => $cart)
+                                <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
                                     <td>
                                         <p>{{ $cart->user->name }}</p>
                                     </td>
@@ -114,10 +91,14 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if (count($recentOrders) > 10)
+                        <div class="view-more">
+                            <button class="view-more-btn" data-target="orders" data-state="more">Lihat Selengkapnya</button>
+                        </div>
+                    @endif
                 </div>
             </div>
 
-            <!-- Tabel Cart Terbaru -->
             <div class="table-data">
                 <div class="order">
                     <div class="head">
@@ -133,8 +114,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($recentCarts as $cart)
-                                <tr>
+                            @foreach ($recentCarts as $index => $cart)
+                                <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
                                     <td>
                                         <p>{{ $cart->user->name }}</p>
                                     </td>
@@ -145,6 +126,11 @@
                             @endforeach
                         </tbody>
                     </table>
+                    @if (count($recentCarts) > 10)
+                        <div class="view-more">
+                            <button class="view-more-btn" data-target="carts" data-state="more">Lihat Selengkapnya</button>
+                        </div>
+                    @endif
                 </div>
             </div>
         </main>
@@ -152,7 +138,42 @@
     </section>
     <!-- CONTENT -->
 
-    <script src="script.js"></script>
-</body>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Handle View More/Less Buttons
+            const viewMoreButtons = document.querySelectorAll('.view-more-btn');
 
+            viewMoreButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const target = button.dataset.target;
+                    const state = button.dataset.state;
+                    const rows = document.querySelectorAll(`.table-data .order table tbody tr${target === 'orders' ? '' : '[data-target="carts"]'}`);
+
+                    if (state === 'more') {
+                        // Show all rows
+                        rows.forEach(row => row.classList.remove('hidden'));
+                        button.textContent = 'Lihat Lebih Sedikit';
+                        button.dataset.state = 'less';
+                    } else {
+                        // Show only top 10 rows
+                        rows.forEach((row, index) => {
+                            if (index >= 10) {
+                                row.classList.add('hidden');
+                            }
+                        });
+                        button.textContent = 'Lihat Selengkapnya';
+                        button.dataset.state = 'more';
+                    }
+                });
+            });
+
+            // Toggle Sidebar
+            const menuToggle = document.querySelector('.bx-menu');
+            const sidebar = document.querySelector('#sidebar');
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('hide');
+            });
+        });
+    </script>
+</body>
 </html>
