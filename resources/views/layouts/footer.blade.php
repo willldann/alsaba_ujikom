@@ -149,9 +149,10 @@
                     Dendeng premium untuk Anda yang menghargai kualitas.</p>
             </div>
             <div class="social-icons">
-                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                <a href="#" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/alsaba_bm/?utm_source=ig_web_button_share_sheet" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://wa.me/6285835032584" target="_blank" class="whatsapp" aria-label="WhatsApp">
+                    <i class="fa-brands fa-whatsapp"></i>
+                  </a>                  
             </div>
         </div>
         <p class="footer-bottom">© 2025 All Rights Reserved</p>

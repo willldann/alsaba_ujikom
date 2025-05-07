@@ -8,6 +8,7 @@
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\CheckoutController;
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\ContactController;
     use Illuminate\Support\Facades\Auth;
 
     /*
@@ -133,4 +134,6 @@
         // checkout
         Route::post('/checkout/place-order', [CheckoutController::class, 'placeOrder'])->name('checkout.placeOrder');
 
+
+        Route::post('/kirim-pesan', [ContactController::class, 'send'])->name('kontak.kirim');
     });
