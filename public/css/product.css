@@ -42,13 +42,12 @@
   box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.15);
 }
 
-/* Styling for images to prevent them from becoming too large */
 .product-item img {
-  max-width: 100%;   /* Pastikan gambar tidak melebihi lebar elemen */
-  height: auto;      /* Jaga proporsi gambar */
+  max-width: 100%;
+  height: auto;
   border-radius: 10px;
-  object-fit: contain;  /* Pastikan gambar tidak terdistorsi dan tetap proporsional */
-  max-height: 300px;  /* Batasi tinggi gambar, terutama di perangkat kecil */
+  object-fit: contain;
+  max-height: 300px;
 }
 
 .product-item h3 {
@@ -74,13 +73,25 @@
   gap: clamp(8px, 1.5vw, 10px);
 }
 
-/* Styling for buttons (Lihat Detail & Beli Sekarang) */
+.product-buttons > * {
+  flex: 1;
+  min-width: 0; /* Prevents overflow from long text */
+}
+
+/* Normalize form button */
+.product-buttons form {
+  flex: 1;
+  margin: 0;
+  width: 100%; /* Ensure form takes full flex width */
+}
+
+/* Tombol Rata & Konsisten */
 .product-buttons a,
 .product-buttons button {
-  flex: 1;
+  width: 100%; /* Ensure full width within flex */
   background: linear-gradient(to right, #f39c12, #e67e22);
   border: none;
-  padding: clamp(10px, 2vw, 12px) 0;
+  padding: 10px 15px; /* Consistent padding */
   cursor: pointer;
   font-size: clamp(14px, 2.5vw, 16px);
   font-weight: 600;
@@ -90,9 +101,19 @@
   text-align: center;
   text-decoration: none;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px; /* Jarak antara ikon dan teks */
+  line-height: 1.5; /* Ensure consistent height */
 }
 
-/* Hover effect for both buttons */
+/* Ensure form button matches link button */
+.product-buttons form button {
+  margin: 0; /* Remove any default margins */
+  width: 100%; /* Ensure button fills form */
+}
+
 .product-buttons a:hover,
 .product-buttons button:hover {
   background: linear-gradient(to right, #e67e22, #d35400);
@@ -100,15 +121,7 @@
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
 }
 
-/* Button-specific styles */
-.product-buttons button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* ========== Responsive Styles ========== */
-/* Tablets and Medium Devices (≤768px) */
+/* Responsive */
 @media (max-width: 768px) {
   .container {
     margin: 20px auto;
@@ -124,26 +137,11 @@
     gap: 15px;
   }
 
-  .product-item {
-    padding: 12px;
-  }
-
-  .product-item h3 {
-    font-size: 18px;
-  }
-
-  .price {
-    font-size: 16px;
-  }
-
-  .product-buttons a,
-  .product-buttons button {
-    padding: 10px 0;
-    font-size: 14px;
+  .product-buttons {
+    flex-direction: column;
   }
 }
 
-/* Small Devices (≤576px) */
 @media (max-width: 576px) {
   .container {
     margin: 15px auto;
@@ -152,92 +150,21 @@
 
   .section-title {
     font-size: 20px;
-    margin-bottom: 15px;
   }
 
   .product-grid {
     grid-template-columns: 1fr;
-    gap: 12px;
-  }
-
-  .product-item {
-    padding: 10px;
   }
 
   .product-item img {
-    max-height: 150px;  /* Mengurangi tinggi gambar pada layar kecil */
-  }
-
-  .product-item h3 {
-    font-size: 16px;
-  }
-
-  .category {
-    font-size: 12px;
-  }
-
-  .price {
-    font-size: 14px;
+    max-height: 150px;
   }
 
   .product-buttons {
     flex-direction: column;
-    gap: 8px;
   }
 
-  .product-buttons a,
-  .product-buttons button {
-    padding: 10px;
-    font-size: 14px;
-  }
-}
-
-/* Large Devices (>1200px) */
-@media (min-width: 1200px) {
-  .container {
-    max-width: 1400px;
-  }
-
-  .section-title {
-    font-size: 28px;
-  }
-
-  .product-grid {
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 30px;
-  }
-
-  .product-item {
-    padding: 20px;
-  }
-
-  .product-item h3 {
-    font-size: 22px;
-  }
-
-  .price {
-    font-size: 20px;
-  }
-
-  .product-buttons a,
-  .product-buttons button {
-    padding: 14px 0;
-    font-size: 16px;
-  }
-}
-
-/* Navbar Fix for Consistency (assuming navbar-container exists in previous context) */
-@media (max-width: 768px) {
-  .navbar-container {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 15px;
-  }
-
-  nav ul {
-    margin-top: 10px;
-    gap: 10px;
-    flex-direction: column;
+  .product-buttons > * {
+    width: 100%; /* Full width on mobile */
   }
 }

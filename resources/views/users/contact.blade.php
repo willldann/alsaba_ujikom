@@ -64,9 +64,10 @@
                 <div class="social-icons">
                     <h3>Ikuti Kami</h3>
                     <div class="social-links">
-                        <a href="#" class="facebook"><i class="fa-brands fa-facebook"></i></a>
-                        <a href="#" class="instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="#" class="whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/alsaba_bm/?utm_source=ig_web_button_share_sheet" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://wa.me/6285835032584" target="_blank" class="whatsapp" aria-label="WhatsApp">
+                            <i class="fa-brands fa-whatsapp"></i>
+                          </a>  
                     </div>
                 </div>
             </div>

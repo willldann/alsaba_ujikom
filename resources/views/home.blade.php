@@ -19,7 +19,6 @@
   <!-- Hero Section -->
   <section class="hero">
     <div class="hero-content">
-      <div class="rating">⭐ 4.8/5 by 2k+ customers</div>
       <h1>Promo Spesial <span>Dendeng Ayam</span></h1>
       <p>Diskon Hingga 50%! Jangan lewatkan kesempatan ini, hanya di bulan ini!</p>
       <a href="{{ route('users.product') }}" class="btn">Beli Sekarang</a>
@@ -57,32 +56,6 @@
     </div>
   </section>
 
-  <!-- Features Section -->
-  <section class="features">
-    <h2>Bagaimana Cara Kerjanya</h2>
-    <div class="feature-grid">
-      <div class="feature-item">
-        <div class="icon">📋</div>
-        <h3>Browse Menu</h3>
-        <p>Lihat pilihan dendeng ayam kami.</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon">❤️</div>
-        <h3>Pilih Favorit</h3>
-        <p>Temukan rasa yang Anda suka.</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon">🛒</div>
-        <h3>Pesan Sekarang</h3>
-        <p>Pesan dengan mudah secara online.</p>
-      </div>
-      <div class="feature-item">
-        <div class="icon">🍽️</div>
-        <h3>Nikmati Makanan</h3>
-        <p>Rasakan kelezatan dendeng kami.</p>
-      </div>
-    </div>
-  </section>
 
   <!-- Testimonial Section -->
   <section class="testimonial">
