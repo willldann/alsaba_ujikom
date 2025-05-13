@@ -12,12 +12,12 @@
 
 <body>
     <section id="content">
+        {{-- @include('layouts.sidebar') --}}
         <nav>
             <i class='bx bx-menu'></i>
-            <a href="{{ route('admin.dashboard') }}" class="nav-link">My Store</a>
         </nav>
 
-        <main>
+        <main id="main-content">
             <div class="head-title">
                 <h1>My Store</h1>
                 <a href="{{ route('add_produk') }}" class="btn-add">
@@ -92,6 +92,16 @@
             </div>
         </main>
     </section>
+    <script>
+        const menuToggle = document.querySelector('.bx-menu');
+        const sidebar = document.querySelector('#sidebar');
+        const mainContent = document.querySelector('#main-content');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('hide');
+            mainContent.classList.toggle('expanded'); // Toggle class for the content
+        });
+    </script>
 </body>
 
 </html>

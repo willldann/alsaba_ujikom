@@ -1,4 +1,3 @@
-/* Reset & font */
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +5,6 @@
   font-family: 'Poppins', sans-serif;
 }
 
-/* Background gradient oranye */
 body {
   display: flex;
   justify-content: center;
@@ -15,7 +13,6 @@ body {
   background: linear-gradient(to right, #ff9966, #ff5e62);
 }
 
-/* Card putih tengah */
 .container {
   width: 100%;
   max-width: 430px;
@@ -23,9 +20,9 @@ body {
   padding: 35px 30px;
   border-radius: 12px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
-/* Judul */
 .title {
   font-size: 24px;
   font-weight: bold;
@@ -34,9 +31,9 @@ body {
   color: #333;
 }
 
-/* Input box styling */
 .input-box {
   margin-bottom: 18px;
+  position: relative;
 }
 
 .input-box .details {
@@ -52,9 +49,32 @@ body {
   border: 1px solid #ccc;
   border-radius: 8px;
   font-size: 14px;
+  padding-right: 45px;
 }
 
-/* Gender section */
+.toggle-password {
+  position: absolute;
+  top: 70%;
+  right: 14px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+}
+
+.toggle-password svg {
+  width: 20px;
+  height: 20px;
+  stroke: #888;
+}
+
+.toggle-password:hover svg {
+  stroke: #ff5e62;
+}
+
 .gender-details {
   margin: 18px 0;
 }
@@ -66,8 +86,14 @@ body {
   color: #333;
 }
 
+.category {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
 .category input[type="radio"] {
-  display: none; /* Sembunyikan radio asli */
+  display: none;
 }
 
 .dot {
@@ -83,9 +109,9 @@ body {
 
 input[type="radio"]:checked + .dot {
   background: #e6683c;
-  border-color: #e6683c;
+  border-color: #e6683c;
 }
-/* Tombol Register */
+
 .button {
   text-align: center;
   margin-top: 20px;
@@ -106,30 +132,26 @@ input[type="radio"]:checked + .dot {
   background: #e64a4f;
 }
 
-/* Container untuk tombol login */
-.login-container {
-  text-align: center;
-  margin-top: 20px;
-}
-
-/* Tombol login styled seperti tombol register */
 .login-button {
   display: inline-block;
-  background: linear-gradient(to right, #ff9966, #ff5e62);
-  color: #fff;
-  padding: 10px 0;
-  width: 100%;
+  background: none;
+  color: #ff5e62;
+  padding: 0;
+  width: auto;
   text-align: center;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: background 0.3s ease;
+  text-decoration: underline;
+  border-radius: 0;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s ease;
+  margin-top: 10px;
 }
 
 .login-button:hover {
-  background: #e64a4f;
+  color: #e64a4f;
+  text-decoration: none;
 }
 
-/* Alert box (Laravel error) */
 .alert-danger {
   background-color: #ffe3e3;
   border: 1px solid #f5c2c2;

@@ -17,7 +17,7 @@
 
         <!-- Tombol kembali ke halaman produk -->
         <button class="back-button" onclick="window.location.href='{{ route('users.product') }}'">
-            <i class="fa-solid fa-arrow-left"></i> Kembali ke Produk
+            <i class="fa-solid fa-arrow-left"></i> Tambah Produk Lain
         </button>
 
         <div class="cart-items">

@@ -55,25 +55,14 @@
                 <div class="map-container">
                     <h3>Lokasi Kami</h3>
                     <iframe
-                        src="https://www.google.com/maps/embed?pb=..."
-                        width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
-                    </iframe>
-                </div>
-
-                <!-- Media Sosial -->
-                <div class="social-icons">
-                    <h3>Ikuti Kami</h3>
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/alsaba_bm/?utm_source=ig_web_button_share_sheet" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://wa.me/6285835032584" target="_blank" class="whatsapp" aria-label="WhatsApp">
-                            <i class="fa-brands fa-whatsapp"></i>
-                          </a>  
-                    </div>
+                    src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15810.171341126482!2d109.2150427!3d-6.9417638!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68edbc1f130e99%3A0x45a97095dffb640!2sLosari%20Lor%2C%20Losari%2C%20Brebes%2C%20Jateng!5e0!3m2!1sen!2sid!4v1683700678279!5m2!1sen!2sid"
+                    width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy">
+                </iframe>                
                 </div>
             </div>
         </div>
     </section>
-
+    @include('layouts.footer')
    <!-- Revisi pada script.js bagian pengiriman -->
 
 

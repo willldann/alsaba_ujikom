@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="/css/checkout.css">
     <script defer src="/js/checkout.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Loader CSS */
+        .loader {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #3498db;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 2s linear infinite;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin-left: -30px;
+            margin-top: -30px;
+            display: none;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 <body>
     <div class="checkout-container">
@@ -88,5 +110,24 @@
             </form>
         </div>
     </div>
+
+    <!-- Loader -->
+    <div id="loader" class="loader"></div>
+
+    <script>
+        // Script untuk menampilkan loader dan mengirim form
+        document.querySelector('.submit-button').addEventListener('click', function(event) {
+            // Mencegah form terkirim secara langsung
+            event.preventDefault();
+            
+            // Menampilkan loader
+            document.getElementById('loader').style.display = 'block';
+            
+            // Kirim form setelah sedikit delay untuk memberikan efek loader
+            setTimeout(function() {
+                document.getElementById('shipping-form').submit();
+            }, 500); // Sesuaikan waktunya (500ms)
+        });
+    </script>
 </body>
 </html>

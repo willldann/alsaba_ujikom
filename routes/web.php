@@ -62,8 +62,8 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.my_store');
 
         Route::get('/dashboard', function () {
-            return view('admin.index');
-        })->name('admin.index');
+            return view('admin.dahsboard');
+        })->name('admin.dahsboard');
     });
 
     // routes/web.php

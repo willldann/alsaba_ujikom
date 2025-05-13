@@ -6,7 +6,6 @@
     <title>About Us - Dendeng Shop</title>
     <link rel="stylesheet" href="/css/about.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,12 +15,13 @@
         <div class="container">
             <div class="about-content">
                 <h2>Tentang Kami</h2>
-                <p>Al-saba adalah toko online yang menyediakan berbagai macam dendeng berkualitas tinggi, dibuat dengan bahan pilihan dan proses terbaik.</p>
+                <p><strong>Dendeng Shop</strong> adalah toko online yang menyediakan berbagai macam dendeng berkualitas tinggi, dibuat dengan bahan pilihan dan proses terbaik.</p>
+                <p>Kami berdiri sejak <strong>tahun 2020</strong> dan berlokasi di <strong>Jl. Pulosaren RT 2 / RW 2, Losari Lor, Losari, Brebes, Jawa Tengah</strong>. Dengan komitmen tinggi terhadap kualitas dan pelayanan, kami terus tumbuh untuk menjadi pilihan utama pecinta dendeng di seluruh Indonesia.</p>
                 <p>Kami berdedikasi untuk memberikan pengalaman belanja yang mudah dan menyenangkan, serta memastikan bahwa setiap pelanggan mendapatkan produk terbaik.</p>
                 <a href="{{ route('users.product') }}" class="btn">Lihat Produk</a>
             </div>
             <div class="about-image">
-                <img src="{{ asset('assets/logo.jpeg') }}" alt="Tentang Kami">
+                <img src="{{ asset('assets/baner.jpg') }}" alt="Tentang Kami">
             </div>
         </div>
     </section>

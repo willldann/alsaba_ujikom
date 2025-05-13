@@ -28,7 +28,7 @@ class LoginController extends Controller
                 return redirect('/admin/dashboard');
             }
             if ($user->role === 'user') {
-                return redirect('/dashboard');
+                return redirect('/');
             }
         }
 

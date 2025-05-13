@@ -224,17 +224,10 @@
 
 <body>
     <div class="container">
-
-        <!-- Header -->
-        <div class="header">
-            <p>Manage your team members and their account permissions here.</p>
-        </div>
-
-        <!-- Title -->
-        <h2 class="page-title">Customers</h2>
-
-        <!-- Back Button -->
-        <a href="{{ route('admin.dashboard') }}" class="back-button">Back</a>
+        {{-- @include('layouts.sidebar') --}}
+        <nav>
+            <i class='bx bx-menu'></i>
+        </nav>
 
         <!-- Success message -->
         @if (session('success'))
@@ -259,9 +252,14 @@
             </form>
         </div>
 
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <input type="text" id="searchInput" placeholder="Search users..." onkeyup="searchUsers()" />
+        </div>
+
         <!-- Table -->
         <div class="card">
-            <table>
+            <table id="userTable">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -285,12 +283,10 @@
                             <td>{{ ucfirst($user->role) }}</td>
                             <td>
                                 <div class="actions">
-                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST"
-                                        style="display:inline">
+                                    <form action="{{ route('users.destroy', $user->id) }}" method="POST" style="display:inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button class="btn btn-delete"
-                                            onclick="return confirm('Are you sure?')">Delete</button>
+                                        <button class="btn btn-delete" onclick="return confirm('Are you sure?')">Delete</button>
                                     </form>
                                 </div>
                             </td>
@@ -304,6 +300,32 @@
             </table>
         </div>
     </div>
+
+    <script>
+        function searchUsers() {
+            let input = document.getElementById('searchInput');
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById("userTable");
+            let tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName("td");
+                let name = td[1].textContent.toLowerCase();
+                let email = td[1].getElementsByClassName('email')[0].textContent.toLowerCase();
+
+                if (name.indexOf(filter) > -1 || email.indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+        const menuToggle = document.querySelector('.bx-menu');
+            const sidebar = document.querySelector('#sidebar');
+            menuToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('hide');
+            });
+    </script>
 </body>
 
 </html>
