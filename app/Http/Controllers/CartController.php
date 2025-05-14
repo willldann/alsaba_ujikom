@@ -20,7 +20,7 @@ class CartController extends Controller
             ->get();
 
         if ($cartItems->isEmpty()) {
-            return redirect()->route('users.product')->with('error', 'Keranjang Anda kosong.');
+            return redirect()->route('users.product')->with('error', 'Keranjang Anda masih kosong, mohon untuk menambahkan produk dibawah ini terlebih dahulu.');
         }
 
         return view('users.cart', compact('cartItems'));

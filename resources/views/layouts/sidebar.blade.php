@@ -33,11 +33,12 @@
     <!-- Logout Section -->
     <ul class="side-menu">
         <li>
-            <form method="POST" action="{{ route('logout') }}">
+            <form method="POST" action="{{ route('logout') }}" style="display: inline;">
                 @csrf
-                <button type="submit" class="logout">
-                    <i class='bx bxs-log-out-circle'></i>
-                    <span class="text">Logout</span>
+                <button type="submit" class="logout"
+                    style="display: flex; align-items: center; gap: 8px; background: #dc3545; color: #ffffff; border: none; border-radius: 5px; font-size: 16px; font-family: 'Poppins', sans-serif; cursor: pointer; transition: background 0.3s ease, transform 0.2s ease; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+                    <i class='bx bxs-log-out-circle' style="font-size: 18px;"></i>
+                    <span class="text" style="font-weight: 400;">Logout</span>
                 </button>
             </form>
         </li>

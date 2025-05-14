@@ -11,13 +11,13 @@
 </head>
 
 <body>
+    @include('layouts.sidebar')
+
     <section id="content">
-        {{-- @include('layouts.sidebar') --}}
         <nav>
             <i class='bx bx-menu'></i>
         </nav>
-
-        <main id="main-content">
+        <main>
             <div class="head-title">
                 <h1>My Store</h1>
                 <a href="{{ route('add_produk') }}" class="btn-add">
@@ -61,7 +61,7 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>
-                                        <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}"
+                                        <img src="{{ asset("storage/{$product->image}") }}" alt="{{ $product->name }}"
                                             width="40">
                                         {{ $product->name }}
                                     </td>

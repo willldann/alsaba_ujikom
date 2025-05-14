@@ -12,44 +12,7 @@
 
 <body>
     <!-- SIDEBAR -->
-    <section id="sidebar">
-        <a href="#" class="brand">
-            <i class='bx bxs-smile'></i>
-            <span class="text">AdminHub</span>
-        </a>
-        <ul class="side-menu top">
-            <li class="active">
-                <a href="{{ route('admin.dashboard') }}">
-                    <i class='bx bxs-home'></i>
-                    <span class="text">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('admin.my_store') }}">
-                    <i class='bx bxs-shopping-bag-alt'></i>
-                    <span class="text">My Store</span>
-                </a>
-            </li>
-            <li>
-                <a href="{{ route('users.index') }}">
-                    <i class='bx bxs-group'></i>
-                    <span class="text">User</span>
-                </a>
-            </li>
-        </ul>
-        <ul class="side-menu">
-            <li>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <button type="submit" class="logout"
-                        style="all: unset; cursor: pointer; display: flex; align-items: center;">
-                        <i class='bx bxs-log-out-circle'></i>
-                        <span class="text">Logout</span>
-                    </button>
-                </form>
-            </li>
-        </ul>
-    </section>
+    @include('layouts.sidebar')
     <!-- SIDEBAR -->
 
     <!-- CONTENT -->
