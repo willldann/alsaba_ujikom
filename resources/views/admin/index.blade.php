@@ -1,28 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="/admin/style.css">
     <title>AdminHub</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
-    <!-- SIDEBAR -->
     @include('layouts.sidebar')
-    <!-- SIDEBAR -->
 
-    <!-- CONTENT -->
     <section id="content">
-        <!-- NAVBAR -->
         <nav>
             <i class='bx bx-menu'></i>
         </nav>
 
-        <!-- MAIN -->
         <main>
             <div class="head-title">
                 <div class="left">
@@ -30,39 +23,12 @@
                 </div>
             </div>
 
-            <div class="table-data">
-                <div class="order">
-                    <div class="head">
-                        <h3>Recent Orders</h3>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>No</th>
-                                <th>User</th>
-                                <th>Product</th>
-                                <th>Quantity</th>
-                                <th>Weight</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($recentOrders as $index => $cart)
-                                <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $cart->user->name }}</td>
-                                    <td>{{ $cart->product->name }}</td>
-                                    <td>{{ $cart->quantity }}</td>
-                                    <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram</td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    @if (count($recentOrders) > 10)
-                        <div class="view-more">
-                            <button class="view-more-btn" data-target="orders" data-state="more">Lihat
-                                Selengkapnya</button>
-                        </div>
-                    @endif
+            <!-- CHARTS -->
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 40px 20px; background-color: #f9f9f9;">
+                <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; max-width: 500px; width: 100%; text-align: center;">
+                    <h3 style="margin-bottom: 5px;">Quantity vs Weight</h3>
+                    <p style="font-size: 14px; color: #666; margin-top: 0;">Perbandingan Quantity dan Weight (Cart)</p>
+                    <canvas id="quantityWeightChart" style="width: 100%; height: auto;"></canvas>
                 </div>
             </div>
 
@@ -83,47 +49,66 @@
                         </thead>
                         <tbody>
                             @foreach ($recentCarts as $index => $cart)
-                                <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
-                                    <td>{{ $index + 1 }}</td>
-                                    <td>{{ $cart->user->name }}</td>
-                                    <td>{{ $cart->product->name }}</td>
-                                    <td>{{ $cart->quantity }}</td>
-                                    <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram
-                                    </td>
-                                </tr>
+                            <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $cart->user->name }}</td>
+                                <td>{{ $cart->product->name }}</td>
+                                <td>{{ $cart->quantity }}</td>
+                                <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram</td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>
                     @if (count($recentCarts) > 10)
-                        <div class="view-more">
-                            <button class="view-more-btn" data-target="carts" data-state="more">Lihat
-                                Selengkapnya</button>
-                        </div>
+                    <div class="view-more">
+                        <button class="view-more-btn" data-target="carts" data-state="more">Lihat Selengkapnya</button>
+                    </div>
                     @endif
                 </div>
             </div>
 
-            <!-- CHARTS -->
-            <div
-                style="display: flex; flex-direction: column; align-items: center; padding: 40px 20px; background-color: #f9f9f9;">
-
-                <div
-                    style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; max-width: 400px; width: 100%; margin-bottom: 40px; text-align: center;">
+            <div style="display: flex; flex-direction: column; align-items: center; padding: 40px 20px; background-color: #f9f9f9;">
+                <div style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; max-width: 500px; width: 100%; margin-bottom: 40px; text-align: center;">
                     <h3 style="margin-bottom: 5px;">Visualisasi Orders</h3>
                     <p style="font-size: 14px; color: #666; margin-top: 0;">Distribusi Order per User</p>
                     <canvas id="ordersChart" style="width: 100%; height: auto;"></canvas>
                 </div>
-
-                <div
-                    style="background: #fff; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 20px; max-width: 400px; width: 100%; text-align: center;">
-                    <h3 style="margin-bottom: 5px;">Quantity vs Weight</h3>
-                    <p style="font-size: 14px; color: #666; margin-top: 0;">Perbandingan Quantity dan Weight</p>
-                    <canvas id="quantityWeightChart" style="width: 100%; height: auto;"></canvas>
-                </div>
-
             </div>
 
-
+            <div class="table-data">
+                <div class="order">
+                    <div class="head">
+                        <h3>Recent Orders</h3>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>User</th>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Weight</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($recentOrders as $index => $cart)
+                            <tr class="{{ $index >= 10 ? 'hidden' : '' }}">
+                                <td>{{ $index + 1 }}</td>
+                                <td>{{ $cart->user->name }}</td>
+                                <td>{{ $cart->product->name }}</td>
+                                <td>{{ $cart->quantity }}</td>
+                                <td>{{ rtrim(rtrim(number_format($cart->weight, 2, '.', ''), '0'), '.') }} gram</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    @if (count($recentOrders) > 10)
+                    <div class="view-more">
+                        <button class="view-more-btn" data-target="orders" data-state="more">Lihat Selengkapnya</button>
+                    </div>
+                    @endif
+                </div>
+            </div>
         </main>
     </section>
 
@@ -158,15 +143,51 @@
         });
 
         const orderData = @json($recentOrders);
-        const userMap = {};
-        let quantityData = 0;
-        let weightData = 0;
+        const cartData = @json($recentCarts);
 
+        const userMap = {};
         orderData.forEach(order => {
             const name = order.user.name;
             userMap[name] = (userMap[name] || 0) + 1;
-            quantityData += order.quantity;
-            weightData += parseFloat(order.weight);
+        });
+
+        // Bar Chart: Quantity vs Weight (Cart Data)
+        let totalQuantity = 0;
+        let totalWeight = 0;
+        cartData.forEach(cart => {
+            totalQuantity += cart.quantity;
+            totalWeight += parseFloat(cart.weight);
+        });
+
+        new Chart(document.getElementById('quantityWeightChart'), {
+            type: 'bar',
+            data: {
+                labels: ['Total Quantity', 'Total Weight (gram)'],
+                datasets: [{
+                    label: 'Total',
+                    data: [totalQuantity, totalWeight],
+                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)'],
+                    borderColor: ['rgba(255, 99, 132, 1)', 'rgba(75, 192, 192, 1)'],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        text: 'Perbandingan Quantity dan Weight (Bar Chart dari Cart)'
+                    },
+                    legend: {
+                        display: false
+                    }
+                }
+            }
         });
 
         // Doughnut Chart: Order per User
@@ -199,31 +220,6 @@
                 }
             }
         });
-
-        // Pie Chart: Quantity vs Weight
-        new Chart(document.getElementById('quantityWeightChart'), {
-            type: 'pie',
-            data: {
-                labels: ['Total Quantity', 'Total Weight (gram)'],
-                datasets: [{
-                    label: 'Total',
-                    data: [quantityData, weightData],
-                    backgroundColor: ['rgba(255, 99, 132, 0.6)', 'rgba(75, 192, 192, 0.6)'],
-                    borderColor: '#fff',
-                    borderWidth: 2
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Perbandingan Quantity dan Weight (Pie Chart)'
-                    }
-                }
-            }
-        });
     </script>
 </body>
-
 </html>

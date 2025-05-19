@@ -27,10 +27,10 @@
                 <span>@alsaba_bm</span>
                 <a href="https://www.instagram.com/alsaba_bm" aria-label="Instagram"><i
                         class="fab fa-instagram"></i></a>
-                <a href="https://wa.me/6285835032584" target="_blank" class="whatsapp" aria-label="WhatsApp">
+                <a href="https://wa.me/6285175060122" target="_blank" class="whatsapp" aria-label="WhatsApp">
                     <i class="fa-brands fa-whatsapp"></i>
                 </a>
-                <span>085835032584</span>
+                <span>085175060122</span>
             </div>
         </div>
         <div class="wave"></div>
